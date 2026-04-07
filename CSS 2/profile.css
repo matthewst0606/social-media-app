@@ -1,0 +1,84 @@
+
+
+
+/* Banner Section */
+#mainBanner section {
+    /* layout */
+    width: 100%;
+    background-color: #1b1b1b;
+
+    /* visual */
+    box-shadow: 0 0 15px rgb(10, 10, 10);
+    
+    /* flexbox */
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mainBanner article {
+   /* layout */
+    width: 95%;
+    padding: 20px;
+    margin: 10px;
+
+    /* visual */
+    background-color: #212121;
+    border-radius: 10px;
+    
+    /* flexbox */
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+
+#banner figure {
+    padding: 30px;
+    width: 100%;
+}
+
+#banner li {
+    font-size: 10pt;
+    list-style: none;
+    border-radius: 10px;
+    width: 100%;
+    
+}
+
+/* POST Section */
+.maincontent article {
+   /* layout */
+    width: 95%;
+    padding: 20px;
+    margin: 10px;
+
+    /* visual */
+    background-color: #212121;
+    border-radius: 10px;
+    
+    /* flexbox */
+    display: flex;    
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.yourPost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.yourPost img {
+    
+    width: 95%;
+}
+
+
+main {
+    gap: 40px;
+}
