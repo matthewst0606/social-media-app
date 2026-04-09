@@ -1,147 +1,159 @@
-/* -----GLOBAL----- */
-body {
-    text-align: center;
-    background-color: #212121;
-    font-family: 
-        system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
-        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: white;
-    font-weight: bolder;
-    font-size: 11pt;
 
-    /* flexbox */
-    display: flex;    
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-}
 
-/* -----Header----- */
+
+/* entire header block including title, search bar, & nav bar */
 header {
-    background-color: #303030;
+    background-color: #1b1b1b;
     box-shadow: 0 0 20px rgb(10, 10, 10);
-
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    gap: 15px; 
+
+
+
+    overflow: hidden;
+    transition: 0.5s;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+
+
     display: flex;    
     flex-direction: column;
-    gap: 15px; 
 }
 
-h1 { 
-    font-size: 2em;
+/* Social Media title */
+header h1 { 
+    font-size: 3em;
     text-shadow: 0 0 15px rgb(10, 10, 10);
     display: flex;    
     margin: auto;
 }
 
-
-
-
-/* -------- nav bar -------- */
-#topnav ul, .post ul, #banner ul {
-    width: 75%;
+/* -------- BUTTONS / NAV BAR -------- */
+ 
+.post ul, #topnav ul {
+    width: 50%;
     display: flex;
     align-items: center;
     gap: 10px;
     margin: auto;
+ }
 
+
+
+/* icon size of top bar */
+#topnav ul img {
+    width: 30%;
+    aspect-ratio: 1/1;
 }
-#topnav li, .post li {
-    background-color: #424242;
-    font-size: 10pt;
-    list-style: none;
+
+.post li, #topnav li {
+    width: 100%;
     border-radius: 10px;
-    width: 100%;
+    font-size: 10pt;
+    border-radius: 10px;
+    list-style: none;
     
+    display: flex;
+    align-items: center;
 }
+
+
 a {
-    display: block;
     width: 100%;
-    height: 100%;
     border-radius: 10px;
     padding: 5px;
+
+    display: flex;
+    justify-content: center;
+}
+
+#topnav a {
+    width: 70%;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
 }
 
 
-/* -------- main content -------- */
+/* -------- MAIN CONTENT -------- */
 main {
-    flex: 1;
-    overflow-y: auto;
+    width: 100%;
+    padding-top: 300px;
+    padding-bottom: 300px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+
 }
 
-section {
-    /* layout */
-    width: 90%;
+/* container of all posts */
+#maincontent {
+    width: 70%;
     background-color: #1b1b1b;
-
-    /* visual */
     box-shadow: 0 0 15px rgb(10, 10, 10);
     
-    /* flexbox */
     display: flex;    
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+/* container of an entire post */
 #maincontent article {
-   /* layout */
-    width: 95%;
-    padding: 20px;
-    margin: 10px;
-
-    /* visual */
+    width: 50%;
+    margin: 20px;
     background-color: #212121;
     border-radius: 10px;
     
-    /* flexbox */
     display: flex;    
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* post photos */
-#interact figure { width: 50%; }
 
-#interact img {
+/* container holds main photo, description, & interactions*/
+.figContainer {
+    width: 85%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main post photo */
+.mainPhoto {
     width: 100%;
-    height: fit-content;
+    aspect-ratio: 1/1;
+    border-radius: 10px; 
+    margin-top: 15px;
+
+    object-fit: cover;
+    display: block;
+}
+
+.figContainer figcaption {
+    width: 75%;
+    font-size: 1em;
+    padding: 10px; 
+    text-align: center;
+
+}
+
+/* Interaction icons */
+.interact {
+    width: 50%;
+}
+
+.interact img {
+    width: 70%;
+    object-fit: cover;
+    display: block;   
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* FOOTER */
-footer {
-    background-color: #303030;
-    width: 100%;
-    height: 5%;
-    margin-top: auto;
-    box-shadow: 0 0 20px rgb(10, 10, 10);
-}
-
-
-button:hover, #topnav a:hover, #interact a:hover { background-color: rgb(118, 118, 118); }
-#searchbtn:hover { box-shadow: 0 0 3px #027AFF; }
-figcaption { padding: 10px; }
-#interact ul { background-color: #027AFF; }
-img { border-radius: 10px; }
