@@ -1,17 +1,14 @@
 
+
+//
+
 for (let i = 0; i < posts.length; i++) {
-    displayPost(posts[i].photo, posts[i].description);
-
+    var article = posts[i].displayPost();
+    document.getElementById("maincontent").appendChild(article);
 }
 
+new Interact(document.getElementById("maincontent"));
 
-
-let buttons = document.getElementsByClassName("button");
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].onclick = function() {
-        buttons[i].classList.toggle("clicked");
-    };
-}
 
 
 

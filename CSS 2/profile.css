@@ -1,10 +1,13 @@
 
+header {
+    display: flex;
+}
 
 
 /* Banner Section */
 #mainBanner section {
     /* layout */
-    width: 100%;
+    width: 75%;
     background-color: #1b1b1b;
 
     /* visual */
@@ -22,7 +25,6 @@ article {
     padding: 20px;
     margin: 10px;
 
-    background-color: #212121;
     border-radius: 10px;
     
     display: flex;    
@@ -33,45 +35,92 @@ article {
 
 
 #banner {
-    width: 100%;
+    width: 90%;
     background-color: #1b1b1b;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgb(10, 10, 10);
 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+}
+
+#banner figure {
+    width: 20%;
+    margin: 10px;
+}
+
+#banner ul {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: auto;
+ }
+
+#banner li {
+    width: 100%;
+    border-radius: 10px;
+    font-size: 10pt;
+    border-radius: 10px;
+    list-style: none;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
-/* POST Section */
-.maincontent article {
-    width: 100%;
-    padding: 20px;
-    margin: 10px;
 
-    background-color: #212121;
+/* POST Section */
+.maincontent {
+    width: 50%;
+    background-color: #1b1b1b;
+    padding: 10px 0 10px 0;
+    box-shadow: 0 0 20px rgb(10, 10, 10);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.postContainer {
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
     border-radius: 10px;
-    
+
     display: flex;    
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
 }
 
-.yourPost {
-    width: 75%;
+.postContainer figure {
+    width: 70%;
+
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-
-.yourPost img {
+.postContainer img {
     width: 90%;
     aspect-ratio: 1/1;
     object-fit: cover;
     display: block;
     cursor: pointer;
+
+
+    border-radius: 5px;
+    padding: 3px;
+    background-color: #585858;
 
 }
 
@@ -87,3 +136,40 @@ main {
     object-fit: cover;
     display: block;
 }
+
+
+img:hover {
+    background-color: #525252;
+    opacity: 0.5;
+}
+
+#topnav button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1 { 
+    font-size: 3em;
+    width: 50%;
+    text-shadow: 0 0 15px rgb(10, 10, 10);
+    display: flex;    
+
+    background-color: cadetblue;
+}
+
+
+#menubar {
+    width: 24%;
+    display: flex;
+
+    background-color: red;
+}
+
+#menuBtn {
+    background-color: #1b1b1b;
+}
+
+
+
+/* additional styling */

@@ -1,22 +1,14 @@
-
-
-
 /* entire header block including title, search bar, & nav bar */
 header {
-    background-color: #1b1b1b;
     box-shadow: 0 0 20px rgb(10, 10, 10);
-    width: 100%;
     padding: 10px;
-    gap: 15px; 
-
-
+    gap: 10px; 
 
     overflow: hidden;
     transition: 0.5s;
     position: fixed;
     top: 0;
     z-index: 99;
-
 
     display: flex;    
     flex-direction: column;
@@ -26,92 +18,57 @@ header {
 header h1 { 
     font-size: 3em;
     text-shadow: 0 0 15px rgb(10, 10, 10);
-    display: flex;    
-    margin: auto;
+    padding-bottom: 10px;
 }
 
 /* -------- BUTTONS / NAV BAR -------- */
  
-.post ul, #topnav ul {
+ .post ul {
     width: 50%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
     margin: auto;
+    gap: 10px;
+    display: flex;
  }
 
-
-
 /* icon size of top bar */
-#topnav ul img {
-    width: 30%;
-    aspect-ratio: 1/1;
+.tabcontainer {
+    width: 20%;
+    margin: auto;
+    gap: 10px;
+    display: flex;
 }
 
-.post li, #topnav li {
+.btn, .post li {
     width: 100%;
-    border-radius: 10px;
-    font-size: 10pt;
-    border-radius: 10px;
-    list-style: none;
-    
-    display: flex;
-    align-items: center;
+}
+
+.icon  {
+    width: 50%;
+    padding: 3px;
+    aspect-ratio: 1/1;
 }
 
 
 a {
-    width: 100%;
-    border-radius: 10px;
-    padding: 5px;
-
     display: flex;
     justify-content: center;
 }
-
-#topnav a {
-    width: 70%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-}
-
 
 /* -------- MAIN CONTENT -------- */
-main {
-    width: 100%;
-    padding-top: 300px;
-    padding-bottom: 300px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
 /* container of all posts */
 #maincontent {
     width: 70%;
-    background-color: #1b1b1b;
+
+    padding-top: 200px;
+    padding-bottom: 200px;
     box-shadow: 0 0 15px rgb(10, 10, 10);
-    
-    display: flex;    
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 /* container of an entire post */
-#maincontent article {
-    width: 50%;
+.post {
+    width: 60%;
     margin: 20px;
     background-color: #212121;
-    border-radius: 10px;
-    
-    display: flex;    
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 
@@ -119,41 +76,70 @@ main {
 .figContainer {
     width: 85%;
     padding-top: 20px;
-    display: flex;
+}
+
+/* Main post photo */
+.mainPhoto {
+    aspect-ratio: 1/1;
+    margin-top: 15px;
+    object-fit: cover;
+}
+
+.description {
+    font-size: 8pt;
+    padding: 5px;
+    text-align: center;
+}
+
+.interact {
+    width: 70%;
+    padding: 10px;
+}
+
+
+/* additional styling */
+
+header, #maincontent {
+    background-color: #1b1b1b;
+}
+
+.post li, .tab, .btn, .post, .mainPhoto {
+    border-radius: 10px;
+}
+
+header, .post li, .tab, a, main, .mainPhoto {
+    width: 100%;
+}
+
+main, .figContainer, #maincontent, .post {
+    display: flex;    
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* Main post photo */
-.mainPhoto {
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 10px; 
-    margin-top: 15px;
-
-    object-fit: cover;
-    display: block;
+.btn:hover { 
+    background-color: #303030; 
+    cursor: pointer;
 }
 
-.figContainer figcaption {
-    width: 75%;
-    font-size: 1em;
-    padding: 10px; 
-    text-align: center;
-
+.interact li {
+    cursor: pointer;
 }
 
-/* Interaction icons */
-.interact {
-    width: 50%;
+#active { 
+    background-color: #027AFF; 
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+#active:hover {
+    background-color: #0065d8; 
 }
 
-.interact img {
-    width: 70%;
-    object-fit: cover;
-    display: block;   
+.clicked { 
+    background-color: #027AFF;   
 }
 
-
-
+.clicked:hover {
+    background-color: #0065d8; 
+    cursor: pointer;
+}

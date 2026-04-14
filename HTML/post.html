@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="../CSS 2/reset.css">
     <link rel="stylesheet" href="../CSS 2/main.css">
+    <link rel="stylesheet" href="../CSS 2/post.css">
     <script src="../js/constructors.js"></script>
     <script src="../js/data.js"></script>
     <script src="../js/functions.js"></script>
@@ -32,15 +33,17 @@
 
         <section id="maincontent">
             <article class="post">
-                <h2>select a post format...</h2>
-                <ul>
-                    <li><a href="#">photo</a></li>
-                    <li><a href="#">video</a></li>
-                </ul>
+
+                <form action="submit" get="" id="uploadForm">
+                    <label for="uploadFile" id="uploadLabel">Upload a File</label>
+                    <input type="file" id="uploadInput">
+                    <input type="button" value="upload" id="uploadBtn">
+                </form>
+
+
             </article>
+
         </section>
-
-
 
     </main>
 
