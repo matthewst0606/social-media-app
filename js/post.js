@@ -6,7 +6,6 @@ class Post {
     }
 
     displayPhoto() {
-        console.log("post.js running");
         let img = document.createElement("img");
         img.classList.add("mainPhoto");
         img.src = this.photo;
@@ -47,4 +46,7 @@ class Post {
         article.appendChild(ul);
         return article;
     }
+
+
+
 }

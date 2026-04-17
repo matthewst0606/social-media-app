@@ -1,21 +1,8 @@
-
-
-
-
-
-
 // handles clicking behavior on a post
 class Interact {
-    constructor(ul) { 
-        ul.addEventListener("click", this);
-
-    }
+    constructor(ul) { ul.addEventListener("click", this); }
 
     handleEvent(e) {
-        console.log("clicked");
-        console.log(e.target);
-        console.log(e.target.closest("li"));
-        console.log(e.target.closest("li").className);
         let li = e.target.closest("li");
         if (!li) return;
         console.log(li.className);
@@ -32,11 +19,8 @@ class Interact {
         else return;
     }
 
-
     like(li) {
         li.classList.toggle("clicked");
-
-
         let post = li.closest(".post");
         let dislike = post.querySelector(".dislike");
         if (dislike) dislike.classList.remove("clicked");
@@ -51,6 +35,13 @@ class Interact {
 
     comment(li) {
         li.classList.toggle("clicked");  
+
+        let post = li.closest("post");
+        let comment = post.querySelector(".comment");
+
+        new Comment(this.user, pfp);
+        new CommentManager(comment);
+
         // eventually opens an overlay to display comments section
         // and allows for the user to comment
     }
@@ -63,6 +54,5 @@ class Interact {
     user(li) {
         li.classList.toggle("clicked");  
         // eventually go to the uploaders profile
-
     }
 }

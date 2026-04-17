@@ -17,8 +17,15 @@ var icons = [
 
 
 var comments = [
-    new Comment("user1","../images/user-2.svg", "This is my comment"),
-    new Comment("user2", "../images/user-2.svg", "hi")
+    new Comment("../images/user-2.svg", "user1", "This is my comment"),
+    new Comment("../images/user-2.svg", "user2", "hi")
 ];
 
 
+var topNav = [
+    new Navigation("../images/community-2.svg", "friends-tab", "friends-tab"),
+    new Navigation("../images/media-image-plus.svg", "post-tab", "post-tab"),
+    new Navigation("../images/home.svg", "home-tab", "home-tab"),
+    new Navigation("../images/bell-notification.svg", "notifications-tab", "notifications-tab"),
+    new Navigation("../images/profile-circle-2.svg", "profile-tab", "profile-tab")
+];

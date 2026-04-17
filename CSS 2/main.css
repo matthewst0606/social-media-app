@@ -56,7 +56,7 @@ a {
 
 /* -------- MAIN CONTENT -------- */
 /* container of all posts */
-#maincontent {
+.activePage {
     width: 70%;
 
     padding-top: 200px;
@@ -99,7 +99,7 @@ a {
 
 /* additional styling */
 
-header, #maincontent {
+header, .activePage {
     background-color: #1b1b1b;
 }
 
@@ -111,7 +111,7 @@ header, .post li, .tab, a, main, .mainPhoto {
     width: 100%;
 }
 
-main, .figContainer, #maincontent, .post {
+main, .figContainer, .activePage, .post {
     display: flex;    
     flex-direction: column;
     align-items: center;
@@ -127,11 +127,11 @@ main, .figContainer, #maincontent, .post {
     cursor: pointer;
 }
 
-#active { 
+.active { 
     background-color: #027AFF; 
     box-shadow: 0 0 5px rgb(0, 0, 0);
 }
-#active:hover {
+.active:hover {
     background-color: #0065d8; 
 }
 
@@ -142,4 +142,8 @@ main, .figContainer, #maincontent, .post {
 .clicked:hover {
     background-color: #0065d8; 
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

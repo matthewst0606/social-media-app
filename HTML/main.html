@@ -11,6 +11,7 @@
     <script src="../js/interact.js"></script>
     <script src="../js/icons.js"></script>
     <script src="../js/post.js"></script>
+    <script src="../js/navigation.js"></script>
     <script src="../js/data.js"></script>
 </head>
 
@@ -18,25 +19,8 @@
 <body>
     <header>
         <h1>social media</h1>
-        <nav id="topnav">
-            <ul class="tabcontainer">
-                <li class="tab">
-                    <a href="friends.html" class="btn"><img src="../images/community-2.svg" alt="friends" class="icon"></a>
-                </li>
-                <li class="tab">
-                    <a href="post.html" class="btn"><img src="../images/media-image-plus.svg" alt="Post" class="icon"></a>
-                </li>
-                <li class="tab">
-                    <a href="#" class="btn" id="active"><img src="../images/home.svg" alt="home" class="icon"></a>
-                </li>
-                <li class="tab">
-                    <a href="notification.html" class="btn"><img src="../images/bell-notification.svg" alt="Notifications" class="icon"></a>
-                </li> 
-                <li class="tab">
-                    <a href="userProfile.html" class="btn"><img src="../images/profile-circle-2.svg" alt="Profile" class="icon"></a>
-                </li>
-            </ul>
-        </nav>
+        <nav id="topnav"></nav>
+        
         <nav class="searchbar">
             <input type="text" placeholder="search" class="searchbox">
             <button class="searchbtn"><img src="../images/search-3.svg" alt="search"></button>
@@ -44,13 +28,66 @@
     </header>
 
     <main>
-        <section id="maincontent">
-            <script src="../js/main.js"></script>
-            <!-- also add tags after description -->
+
+        <!-- friends page -->
+        <section id="friends-page" class="hidden">
+            <article>
+                <img src="../images/emoji-puzzled.svg" alt="">nothing here yet...
+            </article>
         </section>
+        
+        <!-- post page (implement first) -->
+        <section id="post-page" class="hidden">
+            <article class="post">
+
+            <form action="../php/upload.php" method="post" enctype="multipart/form-data">
+                <label for="uploadFile" id="uploadLabel">Upload a File</label>
+                <input type="file" id="uploadFile" name="uploadFile">
+                <input type="submit" value="Upload">
+            </form>
+            </article>
+
+        </section>
+
+        <!-- home page (already implemented) -->
+        <section id="maincontent" class="activePage"></section>
+
+
+        <!-- notifications section -->
+        <section id="notifications-page" class="hidden">
+            <article><p>no new notifications...</p>
+                <img src="../images/emoji-puzzled.svg" alt="">
+            </article>
+        </section>
+
+
+
+
+
+        <!-- user profile section (implement second) -->
+        <section id="profile-page" class="hidden">
+            <article class="postContainer">
+                <figure class="post"><img src="../../images/dog.jpeg" alt="content section here here"></figure>
+                <figure class="post"><img src="../images/dog.jpeg" alt="content section here here"></figure>
+                <figure class="post"><img src="../images/dog.jpeg" alt="content section here here"></figure>
+            </article>
+
+            <article class="postContainer">
+                <figure class="post"><a href=""><img src="../../images/dog.jpeg" alt="content section here here"></a></figure>
+                <figure class="post"><a href=""><img src="../images/dog.jpeg" alt="content section here here"></a></figure>
+                <figure class="post"><img src="../images/dog.jpeg" alt="content section here here"></figure>
+            </article>
+
+            <article class="postContainer">
+                <figure class="post"><a href=""><img src="../../images/dog.jpeg" alt="content section here here"></a></figure>
+                <figure class="post"><a href=""><img src="../images/dog.jpeg" alt="content section here here"></a></figure>
+                <figure class="post"><img src="../images/dog.jpeg" alt="content section here here"></figure>
+            </article>
+        </section>
+
     </main>
 
-
+    <script src="../js/main.js"></script>
 
 </body>
 </html>

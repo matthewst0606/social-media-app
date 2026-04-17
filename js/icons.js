@@ -7,7 +7,6 @@ class Icons {
 
     // display each icon
     displayIcon() {
-        console.log("icon.js running");
         let img = document.createElement("img");
         let a = document.createElement("a");
         let li = document.createElement("li");
@@ -44,4 +43,6 @@ class Icons {
                 break;
         }
     }
+
+    
 }
