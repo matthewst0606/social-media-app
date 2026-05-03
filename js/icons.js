@@ -23,25 +23,7 @@ class Icons {
 
     // label the class of each icon
     labelIcon(li) {
-        switch (this.iconClass) {
-            case "like": 
-                li.classList.add("like");
-                break;
-            case "dislike":
-                li.classList.add("dislike");
-                break;
-            case "comment":
-                li.classList.add("comment");
-                break;
-            case "share":
-                li.classList.add("share");
-                break;
-            case "user":
-                li.classList.add("user");
-                break;
-            default:
-                break;
-        }
+        li.classList.add(this.iconClass);
     }
 
     

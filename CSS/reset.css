@@ -1,13 +1,11 @@
 /* Simple CSS Reset */
-*, *::before, *::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
     text-align: center;
     background-color: #212121;
     font-family: 
@@ -17,7 +15,6 @@ body {
     font-weight: bolder;
     font-size: 11pt;
 
-    /* flexbox */
     display: flex;    
     flex-direction: column;
     justify-content: flex-start;
@@ -32,10 +29,6 @@ img, picture, video, canvas, svg {
 
 input, button, textarea, select {
     font: inherit;
-}
-
-p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
 }
 
 ul, ol {

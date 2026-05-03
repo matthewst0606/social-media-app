@@ -1,0 +1,420 @@
+/* ----- global / shared layout ----- */
+
+header, 
+.tab, 
+.tab a, 
+.btn, 
+.btn a, 
+main { 
+    width: 100%;    
+}
+
+main, 
+.activePage {
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-header,
+.activePage { 
+    background-color: #1b1b1b; 
+}
+
+.tab, 
+.btn { 
+    border-radius: 10px; 
+}
+
+.hidden { 
+    display: none; 
+}
+
+
+/* ----- header ----- */
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; 
+
+    width: 100%;
+    padding: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(6px);
+
+}
+
+.top-header h1 { 
+    padding-bottom: 10px;
+
+    font-size: 3em;
+    text-shadow: 0 0 15px rgb(10, 10, 10);
+}
+
+
+/* ----- top navigation ----- */
+
+#topnav {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.tabcontainer {
+    display: flex;
+    gap: 10px;
+
+    width: 20%;
+    margin: auto;
+}
+
+.icon {
+    width: 50%;
+    padding: 3px;
+    aspect-ratio: 1/1;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#topnav .tab:hover 
+.icon {
+    transform: scale(1.06);
+}
+
+#topnav a,
+.interact a {
+    display: flex;
+    justify-content: center;
+}
+
+#topnav .tab.active {
+
+    box-shadow: 0 0px 12px rgba(2, 122, 255, 0.25);
+    backdrop-filter: blur(6px);
+
+}
+
+/* ----- main page layout ----- */
+
+main {
+    margin-top: 200px;
+    margin-bottom: 80px;
+}
+
+.activePage {
+    width: 70%;
+    padding: 35px 0 35px 0;
+    border-radius: 10px;
+
+    
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+}
+
+#maincontent {
+    width: 100%;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ----- buttons / interaction states ----- */
+.btn:hover { 
+    background-color: #303030; 
+    cursor: pointer;
+}
+
+.interact li, 
+.submit-details { 
+    cursor: pointer; 
+}
+
+.active { 
+    background-color: #027AFF; 
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+
+
+#topnav .tab {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#topnav .tab:hover {
+    transform: translateY(-1px);
+    background-color: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+}
+
+#topnav .tab.active .btn:hover,
+.settings-btn:hover {
+    background-color: #0065d8;
+}
+
+.clicked { 
+    background-color: #027AFF; 
+}
+
+.clicked:hover {
+    background-color: #0065d8; 
+    cursor: pointer;
+}
+
+
+/* ----- reusable title block ----- */
+
+.title {
+    width: 50%;
+    margin: 0 auto;
+    padding: 5px 0 10px 0;
+    border-radius: 10px;
+    
+    
+    text-align: center;
+    align-self: center;
+}
+
+/* -----  card block ----- */
+
+.article-box {
+    background-color: rgba(21, 21, 21, 0.88);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.42);
+
+
+    width: relative;
+    min-height: 200px;
+    padding: 35px;
+    border-radius: 15px;
+
+}
+
+#post-page,
+#notifications-page,
+#friends-page,
+#settings-page {
+    gap: 30px;
+    padding: 35px;
+}
+
+
+
+
+
+
+
+/* settings */ 
+.settings-options, .back-tabcontainer {
+    width: 100%;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 17px;
+}
+
+.settings-tab {
+    position: relative;
+    width: 220px;
+}
+
+.settings-tab .edit-dropdown {
+    position: static;
+    z-index: 5;
+    width: 100%;
+    margin-top: 6px;
+    box-sizing: border-box;
+}
+
+.back-tab {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.back-btn {
+    position: relative;
+
+    width: auto;
+    height: auto;
+    padding: 6px 12px;
+
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(60, 60, 60, 0.75);
+
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+
+
+
+
+
+
+
+
+/* ----- edit settings ----- */
+
+.settings-btn {
+    width: 100%;
+    padding: 8px 12px;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(60, 60, 60, 0.75);
+
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.settings-btn:hover {
+    background-color: rgba(90, 90, 90, 0.85);
+    cursor: pointer;
+}
+
+.settings-btn.active {
+    background-color: rgba(2, 122, 255, 0.65);
+    box-shadow: 0 4px 14px rgba(2, 122, 255, 0.25);
+}
+
+
+/* ----- edit dropdown menu ----- */
+
+.edit-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px;
+
+    border-radius: 10px;
+    background-color: rgba(32, 32, 32, 0.92);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+}
+
+
+
+
+.edit-dropdown button {
+    width: 100%;
+    padding: 7px 12px;
+
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.edit-dropdown button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.edit-dropdown.hidden {
+    display: none;
+}
+
+
+
+
+
+
+/* ----- edit  form ----- */
+
+.pfp-edit-form,
+.bio-edit-form,
+.delete-account-form {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    margin: 0;
+    padding: 0;
+
+
+    background-color: transparent;
+}
+
+.pfp-edit-input,
+.bio-edit-input,
+.delete-account-input {
+    width: 100%;
+    box-sizing: border-box;
+
+
+    padding: 8px 10px;
+
+    border: none;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.08);
+
+    color: white;
+}
+
+
+.pfp-edit-input::file-selector-button {
+    border: none;
+    border-radius: 6px;
+    padding: 5px 8px;
+
+    background-color: rgba(60, 60, 60, 0.9);
+    color: white;
+}
+
+
+.description-save-btn {
+    width: 100%;
+    padding: 6px 8px;
+
+    border: none;
+    border-radius: 7px;
+    background-color: rgba(2, 122, 255, 0.75);
+    color: white;
+
+}
+
+.description-save-btn:hover {
+    background-color: rgba(2, 122, 255, 0.85);
+    cursor: pointer;
+}

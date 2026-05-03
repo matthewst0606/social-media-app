@@ -1,0 +1,39 @@
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.users-card,
+.friends-card {
+    width: 100%;
+}
+
+
+.users-list,
+.friends-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-box {
+    background-color: rgba(113, 113, 113, 0.88);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.42);
+
+
+    width: relative;
+    min-height: 200px;
+    padding: 35px;
+    border-radius: 15px;
+
+}
+
+.user-box-username {
+    width: 100%;
+}
+

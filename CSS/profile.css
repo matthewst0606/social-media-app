@@ -1,0 +1,240 @@
+/* ----- profile banner ----- */
+
+#pfp {
+    width: 70px;
+}
+
+#profile-banner {
+    display: flex;
+    flex-direction: column;
+
+    width: 85%;
+    margin: 10px 10px 25px 10px;
+    padding: 10px;
+
+    border-radius: 12px;
+    background-color: rgba(21, 21, 21, 0.75);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+}
+
+.banner-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.tab-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    padding: 10px;
+}
+
+.banner-container {
+    display: flex;
+    gap: 25px;
+}
+
+.banner-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+#bio {
+    padding-bottom: 20px;
+}
+
+
+/* ----- profile buttons ----- */
+
+.edit-profile-btn {
+    width: 100px;
+    padding: 5px;
+
+    border: none;
+    border-radius: 10px;
+    background-color: #027AFF;
+
+    color: white;
+}
+
+
+/* ----- profile post grid ----- */
+
+#profile-posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    gap: 20px;
+
+    width: 85%;
+    margin: 10px;
+    padding: 10px;
+
+    box-sizing: border-box;
+}
+
+.postPreview {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+
+
+    background-color: rgba(21, 21, 21, 0.75);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.postPreview .figContainer {
+    width: 100%;
+    padding-top: 0;
+}
+
+.postPreview .mainPhoto {
+    margin-top: 0;
+}
+
+
+/* ----- edit post button ----- */
+
+.edit-post-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    width: auto;
+    height: auto;
+    padding: 6px 12px;
+
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(60, 60, 60, 0.75);
+
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.edit-post-btn:hover {
+    background-color: rgba(90, 90, 90, 0.85);
+    cursor: pointer;
+}
+
+.edit-post-btn.active {
+    background-color: rgba(2, 122, 255, 0.65);
+    box-shadow: 0 4px 14px rgba(2, 122, 255, 0.25);
+}
+
+
+/* ----- edit dropdown menu ----- */
+
+.edit-dropdown {
+    position: absolute;
+    right: 10px;
+    bottom: 42px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 6px;
+
+    border-radius: 10px;
+    background-color: rgba(32, 32, 32, 0.92);
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+}
+
+.edit-dropdown button {
+    width: 100%;
+    padding: 7px 12px;
+
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.edit-dropdown button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.edit-dropdown.hidden {
+    display: none;
+}
+
+
+/* ----- edit description form ----- */
+
+.description-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-top: 6px;
+    padding: 6px;
+
+    border-radius: 8px;
+    background-color: rgba(27, 27, 27, 0.5);
+}
+
+.description-edit-input {
+    width: 130px;
+    padding: 6px 8px;
+
+    border: none;
+    border-radius: 7px;
+    background-color: rgba(90, 90, 90, 0.85);
+
+    color: white;
+    font-size: 0.78rem;
+}
+
+.description-edit-input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.description-save-btn {
+    padding: 6px 8px;
+
+    border: none;
+    border-radius: 7px;
+    background-color: rgba(2, 122, 255, 0.7);
+
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.description-save-btn:hover {
+    background-color: rgba(2, 122, 255, 0.85);
+    cursor: pointer;
+}

@@ -1,9 +1,9 @@
 
-class Navigation {
+class NavIcon {
    constructor(icon, icon_alt, iconId) {
       this.icon = icon;
       this.icon_alt = icon_alt;
-      this.iconId = iconId
+      this.iconId = iconId;
    }
 
    // display each icon
@@ -23,29 +23,13 @@ class Navigation {
     }
 
     // label the class of each icon
-    labelTabs(li, a, section) {
+    labelTabs(li, a) {
         li.classList.add("tab");
+        li.id = this.iconId;
         a.classList.add("btn");
 
-        switch (this.iconId) {
-            case "friends-tab": 
-                li.id = "friends-tab";
-                break;
-            case "post-tab":
-                li.id = "post-tab";
-                break;
-            case "home-tab":
-                li.id = "home-tab";
-                li.classList.add("active");
-                break;
-            case "notifications-tab":
-                li.id = "notifications-tab";
-                break;
-            case "profile-tab":
-                li.id = "profile-tab";
-                break;
-            default: break;
-        }
+        if (this.iconId === "home-tab") li.classList.add("active");
+
     }
 } 
 
@@ -55,55 +39,41 @@ class TabInteract {
     constructor(ul) { ul.addEventListener("click", this); }
 
     handleEvent(e) {
-        let li = e.target.closest("li");
+        let li = e.target.closest(".tab");
 
         if (!li) return;        
-        if (li.id == "friends-tab") 
-            this.page(li, document.querySelector("#friends-page"));
-        else if (li.id == "post-tab") 
-            this.page(li, document.querySelector("#post-page"));
-        else if (li.id == "home-tab")
-        {
-            this.page(li, document.querySelector("#maincontent"));
-            console.log("working #maincontent");
-        }
-        else if (li.id == "notifications-tab")
-            this.page(li, document.querySelector("#notifications-page"));
-        else if (li.id == "profile-tab")
-            this.page(li, document.querySelector("#profile-page"));
-        else return;
+
+        const action = {
+            "friends-tab": () => this.page(li, document.querySelector("#friends-page")),
+            "post-tab": () => this.page(li, document.querySelector("#post-page")),
+            "home-tab": () => this.page(li, document.querySelector("#home-page")),
+            "notifications-tab": () => this.page(li, document.querySelector("#notifications-page")),
+            "profile-tab": () => this.page(li, document.querySelector("#profile-page"))
+        };
+
+        if (action[li.id]) action[li.id]();
     }
 
 
     page(li, section) {
         let current = document.querySelector(".active");
-        console.log("method is running...");
         let page = document.querySelector(".activePage");
-        console.log("current tab:", current?.id);
 
-console.log("old page:", page?.id);
-
-console.log("new section:", section?.id);
         if (current && page) {
             current.classList.remove("active");
             page.classList.remove("activePage");
             page.classList.add("hidden");
-            console.log("if statement");
         }
 
         li.classList.add("active");
         section.classList.remove("hidden");
         section.classList.add("activePage");
-
-        console.log("end of method");
     }
 
 
     post(li) {
         let current = document.querySelector(".active");
-        if (current) {
-            current.classList.remove("active");
-        }
+        if (current) current.classList.remove("active");
         li.classList.add("active");
         
     }
@@ -112,8 +82,6 @@ console.log("new section:", section?.id);
        let current = document.querySelector(".active");
         if (current) current.classList.remove("active");
         li.classList.add("active");
-
-
     }
 
     notifications(li) {

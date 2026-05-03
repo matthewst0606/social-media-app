@@ -8,3 +8,10 @@
 .env
 
 images/
+uploads/
+other/
+
+fiveserver.config.js
+
+php/db_connect.php
+compose.yaml

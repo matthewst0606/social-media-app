@@ -6,8 +6,6 @@ class Comment {
         this.username = username;
         this.contents = contents;
     }
-    
-
 
     displayPfp() {
         let img = document.createElement("img");
@@ -19,7 +17,7 @@ class Comment {
     displayUsername() {
         let span = document.createElement("span");
         span.classList.add("username");
-        span.textContent(this.username);
+        span.textContent = this.username;
         return span;
     }
 
@@ -33,66 +31,62 @@ class Comment {
 
     displayComment() {
         let article = document.createElement("article");
-        let a = document.createElement("a");
-
-        let ul = document.createElement("ul");
-
-
         article.classList.add("commentSection");
-        a.classList.add("pfpContainer");
-        ul.classList.add("commentContainer");
+
+        let topRow = document.createElement("section");
+        topRow.classList.add("commentTopRow");
 
         let img = this.displayPfp();
         let span = this.displayUsername();
         let p = this.displayContents();
 
-        a.appendChild(img);
-        a.appendChild(span);
-        ul.appendChild(p);
+        topRow.append(img, span);
+        article.append(topRow, p);
 
- 
-        article.appendChild(ul);
         return article;
     }
-
-
 }
 
 
 
-
-
-
-
-
-
-
-/* 
-    shows comment section for one post,
-    listen for events,
-    store/filter comments,
-    render comments.
-*/
-class CommentManager {
-    constructor(event) { 
-        event.addEventListener("click", this);
-
+class CommentForm {
+    constructor(postId) {
+        this.postId = postId;
     }
 
-    // event is when the comment button is clicked
-    handleEvent(e) {
+    displayCommentsContainer() {
+        let commentsContainer = document.createElement("section");
+        commentsContainer.classList.add("comments-container", "hidden");
 
+        return commentsContainer;
     }
 
-    //calls display comment
-    displayCommentSection() {
+    displayForm() {
 
-    }
+        let form = document.createElement("form");
+        form.classList.add("comment-form", "hidden");
+        form.action = "../php/comment.php";
+        form.method = "post";
 
-    // add comment event
-    addComment() {
+        let postIdInput = document.createElement("input");
+        postIdInput.type = "hidden";
+        postIdInput.name = "post_id";
 
+        postIdInput.value = this.postId;
+
+        let commentInput = document.createElement("input");
+        commentInput.classList.add("searchbox");
+        commentInput.type = "text";
+        commentInput.name = "comment_text";
+        commentInput.placeholder = "add a comment";
+
+        let submit = document.createElement("button");
+        submit.classList.add("submit-details", "comment-submit");
+        submit.type = "submit";
+        submit.textContent = "Comment";
+
+        form.append(postIdInput, commentInput, submit);
+        return form;
     }
 
 }
-

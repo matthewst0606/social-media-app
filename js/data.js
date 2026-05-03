@@ -1,11 +1,6 @@
-var posts = [
 
-    new Post("../images/dog.jpeg", "dog named jackie", 0),
-    new Post("../images/mountain.jpeg", "mountain photo", 1),
-    new Post("../images/water.jpeg", "cool water in cyprus", 2),
-    new Post("../images/matterhorn.jpeg", "matterhorn in zermat", 3)
 
-];
+
 
 var icons = [
     new Icons("../images/thumbs-up-3.svg", "Like", "like"),
@@ -15,17 +10,19 @@ var icons = [
     new Icons("../images/user-2.svg", "View User", "user")    
 ];
 
-
-var comments = [
-    new Comment("../images/user-2.svg", "user1", "This is my comment"),
-    new Comment("../images/user-2.svg", "user2", "hi")
+const profileStats = [
+    new Stats("followers", 0, "followers-count"),
+    new Stats("following", 0, "following-count"),
+    new Stats("likes", 0, "likes-count"),
+    new Stats("posts", 0, "posts-count")
 ];
 
 
+
 var topNav = [
-    new Navigation("../images/community-2.svg", "friends-tab", "friends-tab"),
-    new Navigation("../images/media-image-plus.svg", "post-tab", "post-tab"),
-    new Navigation("../images/home.svg", "home-tab", "home-tab"),
-    new Navigation("../images/bell-notification.svg", "notifications-tab", "notifications-tab"),
-    new Navigation("../images/profile-circle-2.svg", "profile-tab", "profile-tab")
+    new NavIcon("../images/community-2.svg", "friends-tab", "friends-tab"),
+    new NavIcon("../images/media-image-plus.svg", "post-tab", "post-tab"),
+    new NavIcon("../images/home.svg", "home-tab", "home-tab"),
+    new NavIcon("../images/bell-notification.svg", "notifications-tab", "notifications-tab"),
+    new NavIcon("../images/profile-circle-2.svg", "profile-tab", "profile-tab")
 ];
