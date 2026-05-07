@@ -1,7 +1,10 @@
+/*
+    --- data.js ---
+    This file stores shared data used by the site,
+    including post icons, profile stats, and navigation icons.
+*/
 
-
-
-
+// icons on each post
 var icons = [
     new Icons("../icons/thumbs-up-3.svg", "Like", "like"),
     new Icons("../icons/thumbs-down-3.svg", "Dislike", "dislike"),
@@ -10,6 +13,7 @@ var icons = [
     new Icons("../icons/user-2.svg", "View User", "user")    
 ];
 
+// profile stats with label, default count, and HTML element id
 const profileStats = [
     new Stats("followers", 0, "followers-count"),
     new Stats("following", 0, "following-count"),
@@ -17,8 +21,7 @@ const profileStats = [
     new Stats("posts", 0, "posts-count")
 ];
 
-
-
+// top navigation icons
 var topNav = [
     new NavIcon("../icons/community-2.svg", "friends-tab", "friends-tab"),
     new NavIcon("../icons/media-image-plus.svg", "post-tab", "post-tab"),

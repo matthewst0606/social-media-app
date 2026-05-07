@@ -1,12 +1,15 @@
 <?php
     session_start();
+    require_once __DIR__ . "/../../app/core/redirect.php";
 
-    if (!isset($_SESSION['id'])) {
-        header("Location: login.php");
-        exit();
-    }
+    if (!isset($_SESSION['id'])) redirect("login.php");
+    require_once __DIR__ . "/../../app/core/mainhelper.php";
 
-    require_once "../../app/mainhelper.php";
+    $defaultPfp =  'icons/profile-circle-2.svg';
+    $userPfp = '../' . ($userProfile['pfp'] ?? $defaultPfp);
+
+    $defaultBio = "no bio yet.";
+    $userBio = $userProfile['bio'] ?? $defaultBio;
 ?>
 
 <!DOCTYPE html>
@@ -14,22 +17,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Cards Home Page</title>
-    <link rel="stylesheet" href="../CSS/reset.css">
+    <title>Home Page</title>
     <link rel="stylesheet" href="../CSS/main.css">
-    <link rel="stylesheet" href="../CSS/post.css">
-    <link rel="stylesheet" href="../CSS/search.css">
-    <link rel="stylesheet" href="../CSS/profile.css">
-    <link rel="stylesheet" href="../CSS/upload.css">
-    <link rel="stylesheet" href="../CSS/community.css">
-    <link rel="stylesheet" href="../CSS/notification.css">
 
-    <script src="../js/interact.js"></script>
+
+    <script src="../js/postInteract.js"></script>
     <script src="../js/icons.js"></script>
     <script src="../js/comment.js"></script>
     <script src="../js/post.js"></script>
     <script src="../js/profile.js"></script>
-
+    <script src="../js/stats.js"></script>
     <script src="../js/navigation.js"></script>
     <script src="../js/data.js"></script>
 </head>
@@ -38,10 +35,10 @@
     <!------------------ top navigation --------------------->
     <header class="top-header">
 
-        <h1>Post Cards</h1> 
+        <h1><a href="login.php">Social Media</a></h1> 
 
         <!-- top navigation that holds tabs -->
-        <nav id="topnav"><ul class="tabcontainer"></ul></nav>
+        <nav id="top-nav"><ul class="tab-container"></ul></nav>
 
         <!-- top nagivation that holds the searchbar + button -->
         <nav class="searchbar">
@@ -52,11 +49,10 @@
         </nav>
     </header>
 
-
     <main>
         <!------------------ home section --------------------->
-        <section id="home-page" class="activePage">
-            <section id="maincontent"></section>
+        <section id="home-page" class="active-page">
+            <section id="main-content"></section>
         </section>
 
         <!------------------ friends section --------------------->
@@ -80,33 +76,35 @@
         
         <!------------------ upload post section --------------------->
         <section id="post-page" class="hidden">
-            <article class="article-box form-section">
+            <article class="content-card form-section">
                 <h2 class="title">Upload</h2>
                 
                 <!-- form for uploading a post -->
-                <form action="../../app/upload.php" method="post" enctype="multipart/form-data">
+                <form action="../../app/posts/upload.php" method="post" enctype="multipart/form-data">
 
                     <!-- for uploading images & adding description to post -->
                     <input type="file" id="uploadFile" name="uploadFile">
-                    <input class="searchbox" type="text" id="description"
-                           name="uploadDesc" maxlength="255" placeholder="Add Description."
+                   
+                    <input 
+                        class="searchbox" type="text" 
+                        id="description" name="uploadDesc" 
+                        maxlength="255" placeholder="Add Description."
                     >
                     <!-- submit the upload -->
-                    <input type="submit" value="Upload" class="submit-details">
+                    <input type="submit" value="Upload" class="submit-btn">
                 </form>
             </article>
         </section>
 
         <!------------------ notifications section --------------------->
         <section id="notifications-page" class="hidden">
-                <article class="article-box notifications-card">
+                <article class="content-card notifications-card">
                     <h2 class="title">Notifications</h2>
 
                     <!-- list all notifications if available -->
                     <ul class="notification-list"></ul>
                 </article>
         </section>
-
 
         <!------------------ user profile section --------------------->
         <section id="profile-page" class="hidden">
@@ -117,16 +115,11 @@
                     <h2 class="title">profile</h2>
                     
                     <!-- pfp, username, & bio -->
-                    <img id="pfp" 
-                         src="<?php echo htmlspecialchars('../' . ($userProfile['pfp'] ?? 'icons/profile-circle-2.svg')); ?>" 
-                         alt="pfp"
-                    >
+                    <img id="pfp" src="<?php echo htmlspecialchars($userPfp); ?>" alt="pfp">
                     <p id="username">
-                        <?php echo htmlspecialchars($_SESSION['username']); ?>
+                        <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>
                     </p>
-                    <p id="bio">
-                        <?php echo htmlspecialchars($userProfile['bio'] ?? "no bio yet."); ?>
-                    </p>
+                    <p id="bio"><?php echo htmlspecialchars($userBio); ?></p>
                     
                     <!-- settings button -->
                     <a href="settings.php" class="edit-profile-btn">edit profile</a>
@@ -140,23 +133,13 @@
             </section>
 
             <!-- displays the accounts posts -->
-            <section id="profile-posts">
-
-
-            </section>
+            <section id="profile-posts"></section>
         </section>
     </main>
 
     <!-- script to send details from DB to JS -->
-    <script> 
-        const dbPosts = <?php echo json_encode($posts); ?>; 
-        const userPosts = <?php echo json_encode($profilePosts); ?>;
-        const dbFriends = <?php echo json_encode($friends); ?>;
-        const dbComments = <?php echo json_encode($comments); ?>;
-        const dbUsers = <?php echo json_encode($users); ?>
-    </script>
-
-    <script src="../js/friends.js"></script>
+    <?php include __DIR__ . "/include/appdata.php"; ?>
+    <script src="../js/user.js"></script>
     <script src="../js/notification.js"></script>
     <script src="../js/main.js"></script>
 </body>

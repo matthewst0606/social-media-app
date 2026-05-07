@@ -1,3 +1,9 @@
+/*
+    --- icons.js ---
+    Defines the Icons class which is used to create
+    a list of clickable icon items used for post actions
+    (like, dislike, comment, share, view user)
+*/
 class Icons {
     constructor(icon, iconAlt, iconClass) {
         this.icon = icon;
@@ -7,24 +13,24 @@ class Icons {
 
     // display each icon
     displayIcon() {
-        let img = document.createElement("img");
-        let a = document.createElement("a");
         let li = document.createElement("li");
+        let a = document.createElement("a");
+        let img = document.createElement("img");
+        let span = document.createElement("span");
 
         img.src = this.icon;
         img.alt = this.iconAlt;
 
-        this.labelIcon(li);
-
         a.appendChild(img);
         li.appendChild(a);
+
+        if (this.iconClass === "like" || this.iconClass === "dislike") {
+            span.classList.add("icon-interact-count");
+            span.textContent = 0;
+            li.appendChild(span);
+        }
+
+        li.classList.add(this.iconClass); 
         return li;
     }
-
-    // label the class of each icon
-    labelIcon(li) {
-        li.classList.add(this.iconClass);
-    }
-
-    
 }

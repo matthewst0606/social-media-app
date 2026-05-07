@@ -1,4 +1,8 @@
-
+<?php
+    session_start();
+    require_once __DIR__ . "/../../app/core/redirect.php";
+    if (!isset($_SESSION['id'])) redirect("login.php");
+?>
 
 
 <!-- edit profile
@@ -18,42 +22,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-
+    <title>Settings</title>
 
     <link rel="stylesheet" href="../CSS/reset.css">
     <link rel="stylesheet" href="../CSS/main.css">
 </head>
 <body>
-
+    <!------------------ top navigation --------------------->
     <header class="top-header">
-        <h1>Post Cards</h1>
-
-        <nav id="topnav">
-            <ul class="tabcontainer back-tabcontainer">
-                <li class="tab back-tab">
-                    <a href="main.php" class="btn back-btn">back to profile</a>
+        <h1>Social Media</h1>
+        <nav id="top-nav">
+            <ul class="tab-container back-tab-container">
+                <li class="nav-tab back-tab">
+                    <a href="main.php" class="nav-btn back-btn">back to profile</a>
                 </li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="activePage" id="settings-page">
+        <section class="active-page" id="settings-page">
 
-            <article class="article-box settings-card">
+            <article class="content-card settings-card">
                 <h2 class="title">Profile Settings</h2>
 
                 <ul class="settings-options">
-                    <li class="tab settings-tab">
-                        <button class="btn settings-btn" id="edit-pfp-button">Change Profile Photo</button>
+                    <li class="nav-tab settings-tab">
+                        <button class="nav-btn settings-btn" id="edit-pfp-button">Change Profile Photo</button>
                     </li>
-                    <li class="tab settings-tab">
-                        <button class="btn settings-btn" id="edit-bio-button">Change Bio</button>
+                    <li class="nav-tab settings-tab">
+                        <button class="nav-btn settings-btn" id="edit-bio-button">Change Bio</button>
                     </li>
-                    <li class="tab settings-tab">
-                        <button class="tab settings-btn" id="delete-account-button">Delete Account</button>
+                    <li class="nav-tab settings-tab">
+                        <button class="nav-tab settings-btn" id="delete-account-button">Delete Account</button>
                     </li>
                 </ul>
             </article>

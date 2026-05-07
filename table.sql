@@ -3,7 +3,7 @@ create table users (
     user_id serial primary key,
     username varchar(20) unique not null,
     email varchar(100) unique not null,
-    password char(60),
+    password varchar(255) not null,
     created_at date default current_date
 );
 
@@ -23,6 +23,17 @@ create table post (
     created_at date default current_date,
     is_public boolean,
     foreign key (user_id) references users(user_id) on delete cascade
+);
+
+create table postReaction (
+    post_id int not null,
+    user_id int not null,
+    reaction varchar(10) not null,
+    created_at date default current_date,
+    primary key (post_id, user_id),
+    foreign key (post_id) references post(post_id) on delete cascade,
+    foreign key (user_id) references users(user_id) on delete cascade,
+    check (reaction in ('like', 'dislike'))
 );
 
 create table comment (

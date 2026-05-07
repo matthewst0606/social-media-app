@@ -13,13 +13,12 @@ input { color:white; }
 
 
 
-#maincontent {
+#main-content {
     background-color: rgba(21, 21, 21, 0.88);
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.32);
     backdrop-filter: blur(10px);
 
-
-    width: 450px;
+    width: 100%;
     padding: 20px;
     border-radius: 10px;
 
@@ -76,7 +75,7 @@ form {
     gap: 10px;
 }
 
-.submit-details {
+.submit-btn {
     padding: 5px;
 
     width: 100px;
@@ -84,4 +83,13 @@ form {
     border-radius: 10px;
     background-color: #027AFF;
     color: white;
+}
+
+#login-page,
+#register-page {
+    width: 40%;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+
 }

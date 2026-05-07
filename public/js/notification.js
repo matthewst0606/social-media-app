@@ -1,81 +1,110 @@
 class Notification {
-    constructor(username, action, icon, timeText) {
+    constructor(username, action, icon, createdAt) {
         this.username = username;
         this.action = action;
         this.icon = icon;
-        this.timeText = timeText;
+        this.createdAt = createdAt;
     }
 
     displayNotification() {
-        const li = document.createElement("li");
+        const notificationItem = document.createElement("li");
+        const card = this.createCard();
+        const header = this.createHeader();
+        const body = this.createBody();
 
-        const article = document.createElement("article");
-        article.classList.add("notification-item");
+        card.append(header, body);
+        notificationItem.appendChild(card);
 
-        const header = document.createElement("header");
-        header.classList.add("notification-header");
-
-        const img = document.createElement("img");
-        img.src = this.icon;
-        img.alt = "notification icon";
-        img.classList.add("notification-icon");
-
-        const user = document.createElement("p");
-        const strong = document.createElement("strong");
-        strong.textContent = this.username;
-        user.appendChild(strong);
-
-        if (this.icon !== "") header.appendChild(img);
-        
-
-        header.appendChild(user);
-
-        const body = document.createElement("section");
-        body.classList.add("notification-body");
-
-        const message = document.createElement("p");
-        message.textContent = this.action;
-
-        const time = document.createElement("time");
-        const small = document.createElement("small");
-        small.textContent = this.timeText;
-        time.appendChild(small);
-
-        body.append(message, time);
-
-        article.append(header, body);
-        li.appendChild(article);
-
-        return li;
+        return notificationItem;
     }
 
     static displayNotificationList(notifications) {
-        const list = document.querySelector(".notification-list");
-        if (!list) return;
+        const notificationList = document.querySelector(".notification-list");
+        if (!notificationList) return;
 
-        list.innerHTML = "";
+        notificationList.replaceChildren();
 
         if (!notifications || notifications.length === 0) {
-            const empty = new Notification(
-                "No notifications yet",
-                "New activity will appear here.",
-                "",
-                ""
-            );
-
-            list.appendChild(empty.displayNotification());
+            notificationList.appendChild(Notification.createEmptyState());
             return;
         }
 
-        notifications.forEach(notification => {
+        for (let i = 0; i < notifications.length; i++) {
             const card = new Notification(
-                notification.username,
-                notification.action,
-                notification.icon,
-                notification.timeText
+                notifications[i].username,
+                notifications[i].action,
+                notifications[i].icon,
+                notifications[i].createdAt
             );
 
-            list.appendChild(card.displayNotification());
-        });
+            notificationList.appendChild(card.displayNotification());
+        }
+    }
+
+    // ----- helpers -----
+    createCard() {
+        const article = document.createElement("article");
+        article.classList.add("notification-item");
+        return article;
+    }
+
+    createHeader() {
+        const header = document.createElement("header");
+        header.classList.add("notification-header");
+
+        if (this.icon) {
+            header.appendChild(this.createIcon());
+        }
+
+        header.appendChild(this.createUser());
+        return header;
+    }
+
+    createIcon() {
+        const icon = document.createElement("img");
+        icon.src = this.icon;
+        icon.alt = "notification icon";
+        icon.classList.add("notification-icon");
+        return icon;
+    }
+
+    createUser() {
+        const user = document.createElement("p");
+        const strong = document.createElement("strong");
+
+        strong.textContent = this.username;
+        user.appendChild(strong);
+
+        return user;
+    }
+
+    createBody() {
+        const body = document.createElement("section");
+        const message = document.createElement("p");
+        const time = document.createElement("time");
+
+        body.classList.add("notification-body");
+        message.textContent = this.action;
+        time.textContent = this.createdAt;
+
+        body.append(message, time);
+
+        return body;
+    }
+
+    static createEmptyState() {
+        const emptyItem = document.createElement("li");
+        const emptyState = document.createElement("article");
+        const title = document.createElement("h3");
+        const message = document.createElement("p");
+
+        emptyState.classList.add("notification-empty");
+        title.textContent = "No notifications yet";
+        message.textContent = "New activity will appear here.";
+
+        emptyState.append(title, message);
+        emptyItem.appendChild(emptyState);
+
+        return emptyItem;
     }
 }

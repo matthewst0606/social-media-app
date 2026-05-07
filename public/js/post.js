@@ -1,9 +1,13 @@
 // -------------- post class --------------
 class Post {
-    constructor(photo, description, postId) {
+    constructor(photo, description, postId, likeCount = 0, dislikeCount = 0, userReaction = null) {
         this.photo = photo;
         this.description = description;
         this.postId = postId;
+        this.likeCount = likeCount;
+        this.dislikeCount = dislikeCount;
+        this.userReaction = userReaction;
+
     }
 
 
@@ -29,10 +33,21 @@ class Post {
     // -------------- display post interaction elements --------------
     displayInteractions() {
         let ul = document.createElement("ul");
-        ul.classList.add("interact");
+        ul.classList.add("post-interact");
 
         for (let i = 0; i < icons.length; i++) {
             let li = icons[i].displayIcon();
+
+            if (li.classList.contains("like")) {
+                li.querySelector(".icon-interact-count").textContent = this.likeCount;
+                if (this.userReaction === "like") li.classList.add("selected");
+            }
+
+            if (li.classList.contains("dislike")) {
+                li.querySelector(".icon-interact-count").textContent = this.dislikeCount;
+                if (this.userReaction === "dislike") li.classList.add("selected");
+            }
+
             ul.appendChild(li);
         }
 
@@ -43,6 +58,8 @@ class Post {
     displayPost() {
         let article = document.createElement("article");
         article.classList.add("post");
+        article.dataset.postId = this.postId;
+
 
         let figure = document.createElement("figure");
         figure.classList.add("figContainer");

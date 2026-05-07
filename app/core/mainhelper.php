@@ -30,13 +30,22 @@ $profile = $pdo->prepare(
 $profile->execute([$_SESSION['id']]);
 $profilePosts = $profile->fetchAll(PDO::FETCH_ASSOC);
 
+$userProfileStmt = $pdo->prepare("
+    SELECT bio, pfp
+    FROM userProfile
+    WHERE user_id = ?
+");
+$userProfileStmt->execute([$_SESSION['id']]);
+$userProfile = $userProfileStmt->fetch(PDO::FETCH_ASSOC);
+
 
 // -------------- users statement --------------
 $usersStmt = $pdo->prepare(
     "
-    SELECT users.user_id, users.username
+    SELECT users.user_id, users.username, userProfile.pfp
     FROM users
-    WHERE user_id != ?
+    JOIN userProfile ON users.user_id = userProfile.user_id
+    WHERE users.user_id != ?
     "
 );
 $usersStmt->execute([$_SESSION['id']]);
@@ -58,8 +67,7 @@ $friendsStmt->execute([$_SESSION['id']]);
 $friends = $friendsStmt->fetchAll(PDO::FETCH_ASSOC);
 
 // -------------- comment statement --------------
-$commentsStmt = $pdo->prepare(
-    "
+$commentsStmt = $pdo->prepare("
     SELECT 
         comment.comment_id,
         comment.content,
@@ -70,9 +78,17 @@ $commentsStmt = $pdo->prepare(
     FROM comment
     JOIN users ON comment.user_id = users.user_id
     ORDER BY comment.created_at ASC, comment.comment_id ASC
-    "
-);
+");
 $commentsStmt->execute();
 $comments = $commentsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+// -------------- interact statement --------------
+$reactionStmt = $pdo->prepare("
+    SELECT post_id, user_id, reaction
+    FROM postReaction
+");
+$reactionStmt->execute();
+$reactions = $reactionStmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>

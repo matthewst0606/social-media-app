@@ -1,34 +1,33 @@
 
 class NavIcon {
-   constructor(icon, icon_alt, iconId) {
+   constructor(icon, iconAlt, iconId) {
       this.icon = icon;
-      this.icon_alt = icon_alt;
+      this.iconAlt = iconAlt;
       this.iconId = iconId;
    }
 
    // display each icon
     displayNav() {
+        let icon = document.createElement("img");
+        let navBtn = document.createElement("a");
+        let navTab = document.createElement("li");
 
-        let img = document.createElement("img");
-        let a = document.createElement("a");
-        let li = document.createElement("li");
+        icon.src = this.icon;
+        icon.alt = this.iconAlt;
 
-        img.src = this.icon;
-        img.alt = this.icon_alt;
-
-        this.labelTabs(li, a);
-        a.appendChild(img);
-        li.appendChild(a);
-        return li; 
+        this.labelTabs(navTab, navBtn);
+        navBtn.appendChild(icon);
+        navTab.appendChild(navBtn);
+        return navTab; 
     }
 
     // label the class of each icon
-    labelTabs(li, a) {
-        li.classList.add("tab");
-        li.id = this.iconId;
-        a.classList.add("btn");
+    labelTabs(navTab, navBtn) {
+        navTab.classList.add("nav-tab");
+        navBtn.classList.add("nav-btn");
 
-        if (this.iconId === "home-tab") li.classList.add("active");
+        navTab.id = this.iconId;
+        if (this.iconId === "home-tab") navTab.classList.add("active");
 
     }
 } 
@@ -36,64 +35,39 @@ class NavIcon {
 
 // handles clicking behavior on a post
 class TabInteract {
-    constructor(ul) { ul.addEventListener("click", this); }
+    constructor(tabClick) { tabClick.addEventListener("click", this); }
 
-    handleEvent(e) {
-        let li = e.target.closest(".tab");
+    handleEvent(tabClick) {
+        let tabBtn = tabClick.target.closest(".nav-tab");
+        if (!tabBtn) return;        
 
-        if (!li) return;        
-
-        const action = {
-            "friends-tab": () => this.page(li, document.querySelector("#friends-page")),
-            "post-tab": () => this.page(li, document.querySelector("#post-page")),
-            "home-tab": () => this.page(li, document.querySelector("#home-page")),
-            "notifications-tab": () => this.page(li, document.querySelector("#notifications-page")),
-            "profile-tab": () => this.page(li, document.querySelector("#profile-page"))
+        const tabs = {
+            "friends-tab": "#friends-page",
+            "post-tab": "#post-page",
+            "home-tab": "#home-page",
+            "notifications-tab": "#notifications-page",
+            "profile-tab": "#profile-page"
         };
 
-        if (action[li.id]) action[li.id]();
+        const activePage = tabs[tabBtn.id];
+        if (activePage) {
+            this.displayPage(tabBtn, document.querySelector(activePage));
+        }
     }
 
+    displayPage(selectedTab, selectedPage) {
+        let currentTab = document.querySelector(".active");
+        let currentPage = document.querySelector(".active-page");
 
-    page(li, section) {
-        let current = document.querySelector(".active");
-        let page = document.querySelector(".activePage");
-
-        if (current && page) {
-            current.classList.remove("active");
-            page.classList.remove("activePage");
-            page.classList.add("hidden");
+        if (currentTab && currentPage) {
+            currentTab.classList.remove("active");
+            currentPage.classList.remove("active-page");
+            currentPage.classList.add("hidden");
         }
 
-        li.classList.add("active");
-        section.classList.remove("hidden");
-        section.classList.add("activePage");
-    }
-
-
-    post(li) {
-        let current = document.querySelector(".active");
-        if (current) current.classList.remove("active");
-        li.classList.add("active");
-        
-    }
-
-    home(li) {
-       let current = document.querySelector(".active");
-        if (current) current.classList.remove("active");
-        li.classList.add("active");
-    }
-
-    notifications(li) {
-       let current = document.querySelector(".active");
-        if (current) current.classList.remove("active");
-        li.classList.add("active"); 
-    }
-
-    profile(li) {
-       let current = document.querySelector(".active");
-        if (current) current.classList.remove("active");
-        li.classList.add("active");
+        selectedTab.classList.add("active");
+        selectedPage.classList.remove("hidden");
+        selectedPage.classList.add("active-page");
     }
 }
 

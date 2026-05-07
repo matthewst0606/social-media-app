@@ -2,8 +2,12 @@
 $errorMessage = "";
 
 if (isset($_GET["error"])) {
-    if ($_GET["error"] === "password") $errorMessage = "Incorrect password."; 
-    elseif ($_GET["error"] === "username") $errorMessage = "Username not found.";
+    if ($_GET["error"] === "password") {
+        $errorMessage = "Incorrect password."; 
+    }
+    else if ($_GET["error"] === "username") {
+        $errorMessage = "Username not found.";
+    }
 }
 ?>
 
@@ -20,27 +24,38 @@ if (isset($_GET["error"])) {
 
 </head>
 <body>
-
+    <!------------------ top navigation --------------------->
     <header class="top-header">
-        <h1>social media</h1>
-        <nav id="topnav">
-            <ul class="tabcontainer">
-                <li class="tab"><a href="#" class="btn">about <img src="../icons/info-circle-2.svg" alt=""></a></li>
-                <li  class="tab"><a href="#" class="btn">help <img src="../icons/help-circle-2.svg" alt=""></a></li>
+        <h1><a href="login.php">Social Media</a></h1>
+        <nav id="top-nav">
+            <ul class="tab-container">
+                <li class="nav-tab">
+                    <a href="#" class="nav-btn">
+                        <p>about</p> 
+                        <img src="../icons/info-circle-2.svg" alt="icon" class="icon">
+                    </a>
+                </li>
+                <li class="nav-tab">
+                    <a href="#" class="nav-btn">
+                        <p>help</p>
+                        <img src="../icons/help-circle-2.svg" alt="icon" class="icon">
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
+    <!------------------ login page --------------------->
 
     <main>
-        <section class="activePage" id="login-page">
-            <section id="maincontent">
+        <section class="active-page" id="login-page">
+            <section id="main-content">
 
                 <!-- display error message if username or password is incorrect -->
                 <?php if ($errorMessage !== ""): ?>
                     <p class="error-message"><?php echo $errorMessage; ?></p>
                 <?php endif; ?>
 
-                <form action="../../app/loginhelper.php" method="post">
+                <form action="../../app/auth/loginhelper.php" method="post">
                     <section class="form-section">
                         <!-- enter username -->
                         <input type="text" required="" 
@@ -57,9 +72,9 @@ if (isset($_GET["error"])) {
                     <!-- submit -->
                     <section class="submit-section">
                         <input type="submit" name="login" 
-                               value="login" class="submit-details" id="login"
+                               value="login" class="submit-btn" id="login"
                         >
-                        <button class="submit-details" id="register">
+                        <button class="submit-btn" id="register">
                             <a href="register.php">register</a>
                         </button>
                     </section>

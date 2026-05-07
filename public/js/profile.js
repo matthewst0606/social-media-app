@@ -2,7 +2,73 @@
 
 
 class ProfilePost extends Post {
+    // --------------  constructs a post  -------------- 
+    displayProfilePost() {
+        let postPreview = this.createProfileArticle();
+        let postImage = this.createProfileFigure();
+        let dropdownButton = this.createDropdownButton();
+        let dropdown = this.createDropdown(dropdownButton);
+        postPreview.append(postImage, dropdownButton, dropdown);
 
+
+        this.editBtnListener(dropdownButton, dropdown);
+
+        let editDescriptionBtn = this.createDescriptionButton();
+        let descriptionOptions = this.createDescriptionOptions();
+        let deletePostBtn = this.createDeleteButton();
+    
+        this.deletePostListener(deletePostBtn);
+        this.editDescriptionListener(editDescriptionBtn, dropdown, deletePostBtn, descriptionOptions);
+
+        dropdown.append(editDescriptionBtn, deletePostBtn);
+        return postPreview;
+    }    
+
+    // ------------------------  listeners  ------------------------ 
+    editBtnListener(editBtn, dropdown) {
+        editBtn.addEventListener("click", function () {
+            dropdown.classList.toggle("hidden");
+            editBtn.classList.toggle("active");
+        });
+    }
+
+    deletePostListener(deletePost) {
+        deletePost.addEventListener("click", () => {
+            let form = document.createElement("form");
+            let input = this.postIdInput();
+
+            form.method = "post";
+            form.action = "../../app/posts/delete.php";
+
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        });
+    }
+
+    editDescriptionListener(editDescription, dropdown, deletePost, options) {
+        editDescription.addEventListener("click", () => {
+            // check for existing form 
+            let existingForm = dropdown.querySelector(".description-edit-form");
+            if (existingForm) {
+                existingForm.remove();
+                return;
+            }
+
+            let form = this.createDescriptionForm(options);
+            dropdown.insertBefore(form, deletePost);
+
+            let input = form.querySelector(".description-edit-input");
+            input.focus();
+        });
+    }
+
+
+
+
+
+    // ------------------------  helpers  ------------------------ 
     postIdInput() {        
         let input = document.createElement("input");
         input.type = "hidden";
@@ -11,166 +77,97 @@ class ProfilePost extends Post {
         return input;      
     }
 
-
-    editBtnListener(editBtn, dropdown) {
-        editBtn.addEventListener("click", function () {
-            dropdown.classList.toggle("hidden");
-            editBtn.classList.toggle("active");
-        });
-    }
-
-    deletePostListener(deletePost, options) {
-        deletePost.addEventListener("click", () => {
-            let form = document.createElement("form");
-            form.method = "post";
-            form.action = options.formAction;
-
-            let input = this.postIdInput();
-
-            form.appendChild(input);
-
-            document.body.appendChild(form);
-            form.submit();
-        });
-    }
-
-    editDescriptionListener(editDescription, dropdown, deletePost, options) {
-        editDescription.addEventListener("click", () => {
-            // -------------- check for existing form --------------
-            let existingForm = dropdown.querySelector(".description-edit-form");
-            if (existingForm) {
-                existingForm.remove();
-                return;
-            }
-            // -------------- create form --------------
-            let form = document.createElement("form");
-            form.classList.add(options.formClass);
-            form.method = "post";
-            form.action = options.formAction;
-
-            // -------------- get the users id --------------
-            let idInput = this.postIdInput();
-
-            // -------------- input for description --------------
-            let input = document.createElement("input");
-            input.type = options.inputType;
-            input.name = options.inputName;
-            input.placeholder = options.inputPlaceholder;
-            input.classList.add(options.inputClass);
-
-            // -------------- submit button --------------
-            let submitBtn = document.createElement("button");
-            submitBtn.type = options.submitType;
-            submitBtn.textContent = options.submitText;
-            submitBtn.classList.add(options.submitClass);
-
-
-
-
-            form.append(idInput, input, submitBtn);
-
-
-
-
-
-            dropdown.insertBefore(form, deletePost);
-            input.focus();
-        });
-    }
-
-
-
-    displayProfilePost() {
-        // --------------  creates the post and its border -------------- 
+    createProfileArticle() {
         let article = document.createElement("article");
         article.classList.add("postPreview");
+        return article;
+    }
 
+    createProfileFigure() {
         let figure = document.createElement("figure");
         figure.classList.add("figContainer");
 
         let img = this.displayPhoto();
+        figure.append(img);
 
+        return figure;
+    }
 
-        // --------------  creates dropdown menu -------------- 
+    createDropdownButton() {
         let editBtn = document.createElement("button");
         editBtn.textContent = "edit post";
         editBtn.classList.add("edit-post-btn");
+        return editBtn;
+    }
 
+
+
+    createDropdown(dropdownButton) {
         let dropdown = document.createElement("div");
         dropdown.classList.add("edit-dropdown", "hidden");
-        this.editBtnListener(editBtn, dropdown);
 
+        return dropdown;
+    }
+    
 
-
-        // -------------- deletepost option -------------- 
+    createDeleteButton() {
+        // deletepost option 
         let deletePost = document.createElement("button");
-        let deleteOptions = {
-            formAction: "../../app/deletepost.php",
-        };
+
         deletePost.textContent = "delete post";
         deletePost.classList.add("delete-post-btn");
+        return deletePost;
+    }
 
-        this.deletePostListener(deletePost, deleteOptions);
-
-
-        // --------------  edit desc option -------------- 
+    createDescriptionButton() {
         let editDescription = document.createElement("button");
-        let descOptions = {
-            formClass: "description-edit-form",
-            formAction: "../../app/editdescription.php",
+        editDescription.textContent =  "edit description";
+        editDescription.classList.add("edit-description-btn");
+        return editDescription;
+    }
 
+    createDescriptionOptions() {
+        return {
+            formClass: "description-edit-form",
+            formAction: "../../app/posts/editdescription.php",
             inputType: "text",
             inputName: "description",
             inputPlaceholder: "New Description",
             inputClass: "description-edit-input",
-
             submitText: "Save",
             submitType: "submit",
-            submitClass: "description-save-btn"
+            submitClass: "save-btn"
         };
-
-        editDescription.textContent =  "Edit Description";
-        editDescription.classList.add("edit-description-btn");
-        this.editDescriptionListener(editDescription, dropdown, deletePost, descOptions);
+    }
 
 
+    createDescriptionForm(options) {
+        let form = document.createElement("form");
+        form.classList.add(options.formClass);
+        form.method = "post";
+        form.action = options.formAction;
 
-        dropdown.append(editDescription, deletePost);
-        figure.append(img);
-        article.append(figure, editBtn, dropdown);
+        // get the users id 
+        let idInput = this.postIdInput();
 
-        return article;
-    }    
+        // input for description
+        let input = document.createElement("input");
+        input.type = options.inputType;
+        input.name = options.inputName;
+        input.placeholder = options.inputPlaceholder;
+        input.classList.add(options.inputClass);
+
+        // submit button
+        let submitBtn = document.createElement("button");
+        submitBtn.type = options.submitType;
+        submitBtn.textContent = options.submitText;
+        submitBtn.classList.add(options.submitClass);
+
+        form.append(idInput, input, submitBtn);
+        return form;
+    }
+
 }
 
 
 
-
-
-
-class Stats {
-    constructor(label, count, id) {
-        this.label = label;
-        this.count = count;
-        this.id = id;
-    }
-
-    displayStat() {
-        const li = document.createElement("li");
-        li.classList.add("banner-tab");
-
-        const a = document.createElement("a");
-        a.href = "#";
-        a.classList.add("btn");
-        a.textContent = this.label;
-
-        const p = document.createElement("p");
-        p.classList.add("count");
-        p.id = this.id;
-        p.textContent = this.count;
-
-        li.append(a, p);
-
-        return li;
-    }
-}

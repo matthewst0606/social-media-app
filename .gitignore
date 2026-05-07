@@ -12,5 +12,6 @@ other/
 
 fiveserver.config.js
 
+app/core/db_connect.php
 app/db_connect.php
 compose.yaml

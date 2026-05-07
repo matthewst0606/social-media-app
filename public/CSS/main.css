@@ -1,16 +1,30 @@
-/* ----- global / shared layout ----- */
+@import url("reset.css");
+@import url("post.css");
+@import url("search.css");
+@import url("profile.css");
+@import url("upload.css");
+@import url("community.css");
+@import url("notification.css");
 
+
+/* ----- global / shared layout ----- */
 header, 
-.tab, 
-.tab a, 
-.btn, 
-.btn a, 
-main { 
-    width: 100%;    
+main {
+    width: 100%;
 }
 
+
+/* header, 
+.nav-tab, 
+.nav-tab a, 
+.nav-btn, 
+.nav-btn a, 
+main { 
+    width: 100%;    
+} */
+
 main, 
-.activePage {
+.active-page {
     display: flex;    
     flex-direction: column;
     align-items: center;
@@ -18,12 +32,12 @@ main,
 }
 
 .top-header,
-.activePage { 
+.active-page { 
     background-color: #1b1b1b; 
 }
 
-.tab, 
-.btn { 
+.nav-tab, 
+.nav-btn { 
     border-radius: 10px; 
 }
 
@@ -50,6 +64,7 @@ main,
 
     overflow: hidden;
 
+
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
     backdrop-filter: blur(6px);
 
@@ -65,20 +80,26 @@ main,
 
 /* ----- top navigation ----- */
 
-#topnav {
+#top-nav {
     width: 100%;
 
     display: flex;
     justify-content: center;
 }
 
-.tabcontainer {
+.tab-container {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 25px;
 
-    width: 20%;
     margin: auto;
 }
+
+.nav-btn {
+    width: 100%;
+    padding: 2px 8px 2px 8px;
+}
+
 
 .icon {
     width: 50%;
@@ -87,18 +108,21 @@ main,
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-#topnav .tab:hover 
+
+#top-nav .nav-tab:hover 
 .icon {
     transform: scale(1.06);
 }
 
-#topnav a,
-.interact a {
+
+#top-nav a,
+.post-interact a {
     display: flex;
     justify-content: center;
 }
 
-#topnav .tab.active {
+
+#top-nav .nav-tab.active {
 
     box-shadow: 0 0px 12px rgba(2, 122, 255, 0.25);
     backdrop-filter: blur(6px);
@@ -112,7 +136,7 @@ main {
     margin-bottom: 80px;
 }
 
-.activePage {
+.active-page {
     width: 70%;
     padding: 35px 0 35px 0;
     border-radius: 10px;
@@ -124,7 +148,7 @@ main {
     display: flex;
 }
 
-#maincontent {
+#main-content {
     width: 100%;
 
 
@@ -135,13 +159,13 @@ main {
 
 
 /* ----- buttons / interaction states ----- */
-.btn:hover { 
+.nav-btn:hover { 
     background-color: #303030; 
     cursor: pointer;
 }
 
-.interact li, 
-.submit-details { 
+.post-interact li, 
+.submit-btn { 
     cursor: pointer; 
 }
 
@@ -151,26 +175,26 @@ main {
 }
 
 
-#topnav .tab {
+#top-nav .nav-tab {
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#topnav .tab:hover {
+#top-nav .nav-tab:hover {
     transform: translateY(-1px);
     background-color: rgba(255, 255, 255, 0.08);
     cursor: pointer;
 }
 
-#topnav .tab.active .btn:hover,
+#top-nav .nav-tab.active .nav-btn:hover,
 .settings-btn:hover {
     background-color: #0065d8;
 }
 
-.clicked { 
+.selected { 
     background-color: #027AFF; 
 }
 
-.clicked:hover {
+.selected:hover {
     background-color: #0065d8; 
     cursor: pointer;
 }
@@ -191,12 +215,11 @@ main {
 
 /* -----  card block ----- */
 
-.article-box {
+.content-card {
     background-color: rgba(21, 21, 21, 0.88);
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.42);
 
-
-    width: relative;
+    width: 100%;
     min-height: 200px;
     padding: 35px;
     border-radius: 15px;
@@ -218,7 +241,7 @@ main {
 
 
 /* settings */ 
-.settings-options, .back-tabcontainer {
+.settings-options, .back-tab-container {
     width: 100%;
     padding: 10px;
 
@@ -403,7 +426,7 @@ main {
 }
 
 
-.description-save-btn {
+.save-btn {
     width: 100%;
     padding: 6px 8px;
 
@@ -414,7 +437,7 @@ main {
 
 }
 
-.description-save-btn:hover {
+.save-btn:hover {
     background-color: rgba(2, 122, 255, 0.85);
     cursor: pointer;
 }

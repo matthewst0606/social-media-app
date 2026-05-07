@@ -5,36 +5,36 @@ class Settings {
             dropdown.classList.toggle("hidden");
             button.classList.toggle("active");
 
-            let existingForm = dropdown.querySelector(".btn-edit-form");
-            if (existingForm) {
-                existingForm.remove();
+            // ------ removes the old active form ------
+            let activeForm = dropdown.querySelector(".btn-edit-form");
+            if (activeForm) {
+                activeForm.remove();
                 return;
             }
 
-
+            // ------ form ------
             let form = document.createElement("form");
             form.classList.add("btn-edit-form");
             form.method = "post";
-            form.action = "../../app/editSettings.php";
+            form.action = "../../app/settings/editSettings.php";
 
+            // ----- input ------
             let input = document.createElement("input");
             input.type = options.type;
             input.name = options.name;
             input.classList.add(options.inputClass);
 
+            // if placeholder exists (for editing bio form)
+            if (options.placeholder) input.placeholder = options.placeholder;
 
-            if (options.placeholder) // if placeholder exists
-                input.placeholder = options.placeholder;
+            // if enctype exists (for editing pfp form)
+            if (options.enctype) form.enctype = options.enctype;
             
-            if (options.enctype) // if enctype exists
-                form.enctype = options.enctype;
-            
-
-
+            // form submit button
             let submitBtn = document.createElement("button");
             submitBtn.type = "submit";
             submitBtn.textContent = options.submitText;
-            submitBtn.classList.add("description-save-btn");
+            submitBtn.classList.add("save-btn");
 
 
             form.append(input, submitBtn);
@@ -61,8 +61,7 @@ class Settings {
         pfpDropdown.classList.add("edit-dropdown", "hidden");
         editPfp.parentElement.appendChild(pfpDropdown);
 
-        
-        // -----change bio-----
+        // ----- change bio-----
         let editBio = settingsBtn[1];
         let bioDropdown = document.createElement("div");
         let bioOptions = {

@@ -1,7 +1,14 @@
 /* ----- profile banner ----- */
 
 #pfp {
-    width: 70px;
+    width: 100px;
+    height: 100px;
+
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+
 }
 
 #profile-banner {
@@ -222,7 +229,7 @@
     color: rgba(255, 255, 255, 0.65);
 }
 
-.description-save-btn {
+.save-btn {
     padding: 6px 8px;
 
     border: none;
@@ -234,7 +241,7 @@
     font-weight: 600;
 }
 
-.description-save-btn:hover {
+.save-btn:hover {
     background-color: rgba(2, 122, 255, 0.85);
     cursor: pointer;
 }
