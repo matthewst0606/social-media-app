@@ -16,7 +16,6 @@ class Icons {
         let li = document.createElement("li");
         let a = document.createElement("a");
         let img = document.createElement("img");
-        let span = document.createElement("span");
 
         img.src = this.icon;
         img.alt = this.iconAlt;
@@ -25,12 +24,13 @@ class Icons {
         li.appendChild(a);
 
         if (this.iconClass === "like" || this.iconClass === "dislike") {
+            let span = document.createElement("span");
             span.classList.add("icon-interact-count");
             span.textContent = 0;
             li.appendChild(span);
         }
-
-        li.classList.add(this.iconClass); 
+        
+        li.classList.add("react", this.iconClass); 
         return li;
     }
 }

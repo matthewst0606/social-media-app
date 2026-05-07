@@ -38,11 +38,11 @@ function displayComments(article, postId) {
     let commentsContainer = article.querySelector(".comments-container");
     let postComments = dbComments.filter(comment => comment.post_id == postId); 
 
-    for (let j = 0; j < postComments.length; j++) {
+    for (let i = 0; i < postComments.length; i++) {
         let comment = new Comment(
-            postComments[j].pfp ? "../" + postComments[j].pfp : "../icons/profile-circle-2.svg",
-            postComments[j].username,
-            postComments[j].content
+            postComments[i].pfp ? "../" + postComments[i].pfp : "../icons/profile-circle-2.svg",
+            postComments[i].username,
+            postComments[i].content
         );
         commentsContainer.appendChild(comment.displayComment());
     }

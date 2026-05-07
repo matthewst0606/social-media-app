@@ -74,9 +74,11 @@ $commentsStmt = $pdo->prepare("
         comment.created_at,
         comment.post_id,
         comment.user_id,
-        users.username
+        users.username,
+        userProfile.pfp
     FROM comment
     JOIN users ON comment.user_id = users.user_id
+    JOIN userProfile ON users.user_id = userProfile.user_id
     ORDER BY comment.created_at ASC, comment.comment_id ASC
 ");
 $commentsStmt->execute();

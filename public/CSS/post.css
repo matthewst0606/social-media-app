@@ -53,7 +53,7 @@
 
 .post-interact {
     width: 70%;
-    padding: 10px;
+    padding: 6px;
 }
 
 .post ul {
@@ -81,13 +81,42 @@
     cursor: pointer;
 }
 
+.icon-interact-count{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.react {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
 
 /* ----- comments ----- */
 
-.comments-container {
+.comment-window {
     position: absolute;
-    bottom: 100px;
-    right: -40px;
+    inset: auto 0% 14% auto;
+
+    width: 270px;
+    padding: 12px;
+    border-radius: 16px;
+
+    background-color: rgba(32, 32, 32, 0.75);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+
+    backdrop-filter: blur(6px);
+}
+
+.comment-window.hidden {
+    display: none;
+}
+
+
+.comments-container {
     z-index: 10;
 
     display: flex;
@@ -100,30 +129,23 @@
 
     overflow-y: auto;
 
-    border-radius: 16px 16px 0 0;
-    background-color: rgba(32, 32, 32, 0.88);
-
-    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.42);
-    backdrop-filter: blur(6px);
 }
+ 
+
+ 
 
 .comment-form {
-    position: absolute;
-    bottom: 5px;
-    right: -40px;
     z-index: 10;
-
     display: flex;
     flex-direction: column;
     gap: 8px;
-
     width: 270px;
     padding: 12px;
-    border-radius: 0 0 16px 16px;
 
-    background-color: rgba(30, 30, 30, 0.88);
-    backdrop-filter: blur(6px);
-}
+} 
+
+
+
 
 .comment-form input {
     width: 100%;
@@ -144,9 +166,14 @@
     font-weight: 600;
 }
 
-.comments-container.hidden,
-.comment-form.hidden {
-    display: none;
+.comments-container,
+.comment-form {
+    position: static;
+    width: 100%;
+    background-color: transparent;
+
+
+    
 }
 
 
@@ -172,24 +199,34 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    padding-bottom: 4px;
 }
 
 .pfp {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
+
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
 }
 
 
 
 .username {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 700;
+    display: flex;
 }
 
-.contents {
+
+.content {
     margin: 0 0 0 30px;
 
     color: rgba(255, 255, 255, 0.85);
     font-size: 0.82rem;
+    font-weight: 500;
     text-align: left;
+    padding-left: 7px;
 }

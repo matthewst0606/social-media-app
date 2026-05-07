@@ -103,18 +103,24 @@ class PostInteract {
         let post = li.closest(".post");
         if (!post) return;
 
-        let form = post.querySelector(".comment-form");
-        let comments = post.querySelector(".comments-container");
-
-        if (form) form.classList.toggle("hidden");
-        if (comments) comments.classList.toggle("hidden");
+        let commentWindow = post.querySelector(".comment-window");
+        if (commentWindow) commentWindow.classList.toggle("hidden");
     }
 
     share(li) {
         li.classList.toggle("selected");  
+
+        let post = li.closest(".post");
+        if (!post) return;
     }
 
     user(li) {
         li.classList.toggle("selected");  
+
+        let post = li.closest(".post");
+        if (!post) return;        
+
+        let userWindow = post.querySelector(".post-user-window");
+        if (userWindow) userWindow.classList.toggle("hidden");
     }
 }

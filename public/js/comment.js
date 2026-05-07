@@ -80,13 +80,13 @@ class CommentForm {
     // ----- helpers -----
     displayCommentsContainer() {
         let commentsContainer = document.createElement("section");
-        commentsContainer.classList.add("comments-container", "hidden");
+        commentsContainer.classList.add("comments-container");
         return commentsContainer;
     }
 
     createCommentForm() {
         let form = document.createElement("form");
-        form.classList.add("comment-form", "hidden");
+        form.classList.add("comment-form");
         form.action = "../../app/comments/comment.php";
         form.method = "post";
         return form;

@@ -40,12 +40,28 @@
 }
 
 .user-card-username {
-    width: 100%;
+    width: 25%;
+}
+
+.user-card-pfp {
+    width: 42px;
+    height: 42px;
+
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
 }
 
 .user-container {
-    width: 25%;
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    padding: 10px;
+
 }
 
 

@@ -1,6 +1,6 @@
 // -------------- post class --------------
 class Post {
-    constructor(photo, description, postId, likeCount = 0, dislikeCount = 0, userReaction = null) {
+    constructor(photo, description, postId, likeCount, dislikeCount, userReaction) {
         this.photo = photo;
         this.description = description;
         this.postId = postId;
@@ -73,13 +73,36 @@ class Post {
         let commentForm = commentSection.displayForm();
 
 
+        let commentWindow = document.createElement("section");
+        commentWindow.classList.add("comment-window", "hidden");
+        let userWindow = this.displayUserWindow();
+
+        commentWindow.append(commentsContainer, commentForm)
         figure.append(img, figcaption);
-        article.append(figure, ul, commentsContainer, commentForm);
+        article.append(figure, ul, commentWindow, userWindow);
 
         return article;
     }
 
 
+    displayUserWindow () {
+        const article = document.createElement("article");
+        article.classList.add("post-user-window", "hidden");
+        article.textContent = "test";
+
+        
+
+        let img = document.createElement("img");
+        img.classList.add("pfp");
+        img.src = this.pfp;
+    
+        let span = document.createElement("span");
+        span.classList.add("username");
+        span.textContent = this.username;
+        
+        article.append(img, span);
+        return article;
+    }
 
 
 

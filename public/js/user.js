@@ -19,7 +19,7 @@ class User {
 
         // displays the pfp
         let pfp = document.createElement("img");
-        pfp.classList.add("pfp");
+        pfp.classList.add("user-card-pfp");
         pfp.src = this.pfp;
 
         // displays the username
@@ -52,6 +52,13 @@ class User {
         article.append(div, button);
         li.appendChild(article);
         return li;
+    }
+
+
+
+
+    displayUserCard() {
+
     }
 
 }
