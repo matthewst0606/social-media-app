@@ -85,8 +85,7 @@ form {
     color: white;
 }
 
-#login-page,
-#register-page {
+#login-page {
     width: 40%;
     padding: 25px;
     display: flex;

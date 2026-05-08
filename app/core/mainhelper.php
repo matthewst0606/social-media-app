@@ -42,7 +42,7 @@ $userProfile = $userProfileStmt->fetch(PDO::FETCH_ASSOC);
 // -------------- users statement --------------
 $usersStmt = $pdo->prepare(
     "
-    SELECT users.user_id, users.username, userProfile.pfp
+    SELECT users.user_id, users.username, userProfile.pfp, userProfile.bio
     FROM users
     JOIN userProfile ON users.user_id = userProfile.user_id
     WHERE users.user_id != ?

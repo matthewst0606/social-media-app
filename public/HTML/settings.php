@@ -4,19 +4,6 @@
     if (!isset($_SESSION['id'])) redirect("login.php");
 ?>
 
-
-<!-- edit profile
-    profile photo
-    delete acocunt
-    add bio
-    change details
-    
-
--->
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +13,8 @@
 
     <link rel="stylesheet" href="../CSS/reset.css">
     <link rel="stylesheet" href="../CSS/main.css">
+    <script src="../js/domHelpers.js"></script>
+
 </head>
 <body>
     <!------------------ top navigation --------------------->
@@ -42,19 +31,18 @@
 
     <main>
         <section class="active-page" id="settings-page">
-
             <article class="content-card settings-card">
                 <h2 class="title">Profile Settings</h2>
 
                 <ul class="settings-options">
-                    <li class="nav-tab settings-tab">
-                        <button class="nav-btn settings-btn" id="edit-pfp-button">Change Profile Photo</button>
+                    <li class="settings-tab">
+                        <button class="settings-btn" id="edit-pfp-button">Change Profile Photo</button>
                     </li>
-                    <li class="nav-tab settings-tab">
-                        <button class="nav-btn settings-btn" id="edit-bio-button">Change Bio</button>
+                    <li class="settings-tab">
+                        <button class="settings-btn" id="edit-bio-button">Change Bio</button>
                     </li>
-                    <li class="nav-tab settings-tab">
-                        <button class="nav-tab settings-btn" id="delete-account-button">Delete Account</button>
+                    <li class="settings-tab">
+                        <button class="settings-btn" id="delete-account-button">Delete Account</button>
                     </li>
                 </ul>
             </article>

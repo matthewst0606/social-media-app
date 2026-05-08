@@ -3,25 +3,15 @@
 @import url("search.css");
 @import url("profile.css");
 @import url("upload.css");
-@import url("community.css");
+@import url("user.css");
 @import url("notification.css");
-
+@import url("settings.css");
 
 /* ----- global / shared layout ----- */
 header, 
 main {
     width: 100%;
 }
-
-
-/* header, 
-.nav-tab, 
-.nav-tab a, 
-.nav-btn, 
-.nav-btn a, 
-main { 
-    width: 100%;    
-} */
 
 main, 
 .active-page {
@@ -39,6 +29,10 @@ main,
 .nav-tab, 
 .nav-btn { 
     border-radius: 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .hidden { 
@@ -61,13 +55,10 @@ main,
 
     width: 100%;
     padding: 10px;
-
     overflow: hidden;
-
 
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
     backdrop-filter: blur(6px);
-
 }
 
 .top-header h1 { 
@@ -79,7 +70,6 @@ main,
 
 
 /* ----- top navigation ----- */
-
 #top-nav {
     width: 100%;
 
@@ -123,10 +113,8 @@ main,
 
 
 #top-nav .nav-tab.active {
-
     box-shadow: 0 0px 12px rgba(2, 122, 255, 0.25);
     backdrop-filter: blur(6px);
-
 }
 
 /* ----- main page layout ----- */
@@ -185,8 +173,7 @@ main {
     cursor: pointer;
 }
 
-#top-nav .nav-tab.active .nav-btn:hover,
-.settings-btn:hover {
+#top-nav .nav-tab.active .nav-btn:hover {
     background-color: #0065d8;
 }
 
@@ -235,122 +222,7 @@ main {
 }
 
 
-
-
-
-
-
-/* settings */ 
-.settings-options, .back-tab-container {
-    width: 100%;
-    padding: 10px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 17px;
-}
-
-.settings-tab {
-    position: relative;
-    width: 220px;
-}
-
-.settings-tab .edit-dropdown {
-    position: static;
-    z-index: 5;
-    width: 100%;
-    margin-top: 6px;
-    box-sizing: border-box;
-}
-
-.back-tab {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-}
-
-.back-btn {
-    position: relative;
-
-    width: auto;
-    height: auto;
-    padding: 6px 12px;
-
-    border: none;
-    border-radius: 8px;
-    background-color: rgba(60, 60, 60, 0.75);
-
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(4px);
-}
-
-
-
-
-
-
-
-
-
-/* ----- edit settings ----- */
-
-.settings-btn {
-    width: 100%;
-    padding: 8px 12px;
-
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-
-    border: none;
-    border-radius: 8px;
-    background-color: rgba(60, 60, 60, 0.75);
-
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(4px);
-}
-
-.settings-btn:hover {
-    background-color: rgba(90, 90, 90, 0.85);
-    cursor: pointer;
-}
-
-.settings-btn.active {
-    background-color: rgba(2, 122, 255, 0.65);
-    box-shadow: 0 4px 14px rgba(2, 122, 255, 0.25);
-}
-
-
 /* ----- edit dropdown menu ----- */
-
-.edit-dropdown {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 6px;
-
-    border-radius: 10px;
-    background-color: rgba(32, 32, 32, 0.92);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(6px);
-}
-
-
-
-
 .edit-dropdown button {
     width: 100%;
     padding: 7px 12px;
@@ -372,72 +244,4 @@ main {
 
 .edit-dropdown.hidden {
     display: none;
-}
-
-
-
-
-
-
-/* ----- edit  form ----- */
-
-.pfp-edit-form,
-.bio-edit-form,
-.delete-account-form {
-    width: 100%;
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-
-    margin: 0;
-    padding: 0;
-
-
-    background-color: transparent;
-}
-
-.pfp-edit-input,
-.bio-edit-input,
-.delete-account-input {
-    width: 100%;
-    box-sizing: border-box;
-
-
-    padding: 8px 10px;
-
-    border: none;
-    border-radius: 7px;
-    background-color: rgba(255, 255, 255, 0.08);
-
-    color: white;
-}
-
-
-.pfp-edit-input::file-selector-button {
-    border: none;
-    border-radius: 6px;
-    padding: 5px 8px;
-
-    background-color: rgba(60, 60, 60, 0.9);
-    color: white;
-}
-
-
-.save-btn {
-    width: 100%;
-    padding: 6px 8px;
-
-    border: none;
-    border-radius: 7px;
-    background-color: rgba(2, 122, 255, 0.75);
-    color: white;
-
-}
-
-.save-btn:hover {
-    background-color: rgba(2, 122, 255, 0.85);
-    cursor: pointer;
 }

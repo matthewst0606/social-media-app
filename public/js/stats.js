@@ -6,21 +6,15 @@ class Stats {
     }
 
     displayStat() {
-        const li = document.createElement("li");
-        li.classList.add("banner-tab");
+        const statItem = createElementWithClass("li", "banner-tab");
+        const statLabel = createElementWithClass("span", "stat-label");
+        const statCount = createElementWithClass("span", "count");
 
-        const a = document.createElement("a");
-        a.href = "#";
-        a.classList.add("nav-btn");
-        a.textContent = this.label;
+        statLabel.textContent = this.label;
+        statCount.textContent = this.count;
+        statCount.id = this.id;
 
-        const p = document.createElement("p");
-        p.classList.add("count");
-        p.id = this.id;
-        p.textContent = this.count;
-
-        li.append(a, p);
-
-        return li;
+        statItem.append(statLabel, statCount);
+        return statItem;
     }
 }

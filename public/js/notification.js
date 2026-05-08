@@ -43,28 +43,20 @@ class Notification {
 
     // ----- helpers -----
     createCard() {
-        const article = document.createElement("article");
-        article.classList.add("notification-item");
+        const article = createElementWithClass("article", "notification-item");
         return article;
     }
 
     createHeader() {
-        const header = document.createElement("header");
-        header.classList.add("notification-header");
-
-        if (this.icon) {
-            header.appendChild(this.createIcon());
-        }
+        const header = createElementWithClass("header", "notification-header");
+        if (this.icon) header.appendChild(this.createIcon());
 
         header.appendChild(this.createUser());
         return header;
     }
 
     createIcon() {
-        const icon = document.createElement("img");
-        icon.src = this.icon;
-        icon.alt = "notification icon";
-        icon.classList.add("notification-icon");
+        const icon = createImage(this.icon, "notification icon", "notification-icon");
         return icon;
     }
 
@@ -72,20 +64,19 @@ class Notification {
         const user = document.createElement("p");
         const strong = document.createElement("strong");
 
-        strong.textContent = this.username;
+        setText(strong, this.username);
         user.appendChild(strong);
 
         return user;
     }
 
     createBody() {
-        const body = document.createElement("section");
+        const body = createElementWithClass("section", "notification-body");
         const message = document.createElement("p");
         const time = document.createElement("time");
 
-        body.classList.add("notification-body");
-        message.textContent = this.action;
-        time.textContent = this.createdAt;
+        setText(message, this.action);
+        setText(time, this.createdAt);
 
         body.append(message, time);
 
@@ -94,15 +85,15 @@ class Notification {
 
     static createEmptyState() {
         const emptyItem = document.createElement("li");
-        const emptyState = document.createElement("article");
+        const emptyState = createElementWithClass("article", "notification-empty");
+        const icon = createImage("../icons/emoji-puzzled.svg", "no notifications", "notification-empty-icon");
         const title = document.createElement("h3");
         const message = document.createElement("p");
 
-        emptyState.classList.add("notification-empty");
-        title.textContent = "No notifications yet";
-        message.textContent = "New activity will appear here.";
+        setText(title, "No notifications yet");
+        setText(message, "New activity will appear here.");
 
-        emptyState.append(title, message);
+        emptyState.append(icon, title, message);
         emptyItem.appendChild(emptyState);
 
         return emptyItem;

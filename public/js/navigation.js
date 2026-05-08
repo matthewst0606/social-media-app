@@ -6,26 +6,20 @@ class NavIcon {
       this.iconId = iconId;
    }
 
-   // display each icon
+    // display each icon
     displayNav() {
-        let icon = document.createElement("img");
-        let navBtn = document.createElement("a");
-        let navTab = document.createElement("li");
+        let icon = createImage(this.icon, this.iconAlt);
+        let navBtn = createElementWithClass("a", "nav-btn");
+        let navTab = createElementWithClass("li", "nav-tab");
 
-        icon.src = this.icon;
-        icon.alt = this.iconAlt;
-
-        this.labelTabs(navTab, navBtn);
+        this.labelTabs(navTab);
         navBtn.appendChild(icon);
         navTab.appendChild(navBtn);
         return navTab; 
     }
 
     // label the class of each icon
-    labelTabs(navTab, navBtn) {
-        navTab.classList.add("nav-tab");
-        navBtn.classList.add("nav-btn");
-
+    labelTabs(navTab) {
         navTab.id = this.iconId;
         if (this.iconId === "home-tab") navTab.classList.add("active");
 
@@ -70,5 +64,4 @@ class TabInteract {
         selectedPage.classList.add("active-page");
     }
 }
-
 

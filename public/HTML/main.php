@@ -20,7 +20,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="../CSS/main.css">
 
-
+    <script src="../js/domHelpers.js"></script>
     <script src="../js/postInteract.js"></script>
     <script src="../js/icons.js"></script>
     <script src="../js/comment.js"></script>

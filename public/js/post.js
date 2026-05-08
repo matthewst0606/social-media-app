@@ -1,6 +1,7 @@
 // -------------- post class --------------
 class Post {
-    constructor(photo, description, postId, likeCount, dislikeCount, userReaction) {
+    constructor(photo, description, postId, 
+                likeCount, dislikeCount, userReaction) {
         this.photo = photo;
         this.description = description;
         this.postId = postId;
@@ -10,98 +11,82 @@ class Post {
 
     }
 
+    // -------------- display entire post --------------
+    displayPost() {
+        const postItem = createElementWithClass("article", "post");
+        const postContainer = createElementWithClass("figure", "figContainer");
 
-    // -------------- display post photo --------------
-    displayPhoto() {
-        let img = document.createElement("img");
-        img.classList.add("mainPhoto");
-        img.src = this.photo;
-        img.alt = "Post image";
+        const mainPhoto = createImage(this.photo, "post-photo", "mainPhoto");
+        const photoDescription = this.displayDescription();
 
-        return img;
+        const reactList = this.displayInteractions();
+        
+        const commentSection = new CommentForm(this.postId);
+        const commentsContainer = commentSection.displayCommentsContainer();
+        const commentForm = commentSection.displayForm();
+        const commentWindow = createElementWithClass("section", "comment-window", "hidden");
+
+        const userWindow = this.displayUserWindow();
+
+        postItem.dataset.postId = this.postId;
+        commentWindow.append(commentsContainer, commentForm)
+        postContainer.append(mainPhoto, photoDescription);
+        postItem.append(postContainer, reactList, commentWindow, userWindow);
+        return postItem;
     }
+
+
+
 
      // -------------- display post description --------------
     displayDescription() {
-        let figcaption = document.createElement("figcaption");
-        figcaption.classList.add("description");
-        figcaption.textContent = this.description;
-
-        return figcaption;
+        let description = createElementWithClass("figcaption", "description");
+        setText(description, this.description);
+        return description;
     }
 
     // -------------- display post interaction elements --------------
     displayInteractions() {
-        let ul = document.createElement("ul");
-        ul.classList.add("post-interact");
+        let iconList = createElementWithClass("ul", "post-interact");
 
         for (let i = 0; i < icons.length; i++) {
-            let li = icons[i].displayIcon();
+            let icon = icons[i].displayIcon();
 
-            if (li.classList.contains("like")) {
-                li.querySelector(".icon-interact-count").textContent = this.likeCount;
-                if (this.userReaction === "like") li.classList.add("selected");
+            if (icon.classList.contains("like")) {
+
+                icon.querySelector(".icon-interact-count").textContent = this.likeCount;
+                if (this.userReaction === "like") {
+                    icon.classList.add("selected");
+                }
             }
 
-            if (li.classList.contains("dislike")) {
-                li.querySelector(".icon-interact-count").textContent = this.dislikeCount;
-                if (this.userReaction === "dislike") li.classList.add("selected");
+            if (icon.classList.contains("dislike")) {
+                icon.querySelector(".icon-interact-count").textContent = this.dislikeCount;
+                if (this.userReaction === "dislike") {
+                    icon.classList.add("selected");
+                }
             }
 
-            ul.appendChild(li);
+            iconList.appendChild(icon);
         }
 
-        return ul;
+        return iconList;
     }
 
-    // -------------- display entire post --------------
-    displayPost() {
-        let article = document.createElement("article");
-        article.classList.add("post");
-        article.dataset.postId = this.postId;
 
-
-        let figure = document.createElement("figure");
-        figure.classList.add("figContainer");
-
-        let img = this.displayPhoto();
-        let figcaption = this.displayDescription();
-        let ul = this.displayInteractions();
-
-        let commentSection = new CommentForm(this.postId);
-        let commentsContainer = commentSection.displayCommentsContainer();
-        let commentForm = commentSection.displayForm();
-
-
-        let commentWindow = document.createElement("section");
-        commentWindow.classList.add("comment-window", "hidden");
-        let userWindow = this.displayUserWindow();
-
-        commentWindow.append(commentsContainer, commentForm)
-        figure.append(img, figcaption);
-        article.append(figure, ul, commentWindow, userWindow);
-
-        return article;
-    }
 
 
     displayUserWindow () {
-        const article = document.createElement("article");
-        article.classList.add("post-user-window", "hidden");
-        article.textContent = "test";
+        const userWindow = createElementWithClass("article", "post-user-window", "hidden");
+        const pfp = createElementWithClass("img", "pfp");
+        const username = createElementWithClass("span", "username");
 
+        userWindow.textContent = "test";
+        pfp.src = this.pfp;
+        username.textContent = this.username;
         
-
-        let img = document.createElement("img");
-        img.classList.add("pfp");
-        img.src = this.pfp;
-    
-        let span = document.createElement("span");
-        span.classList.add("username");
-        span.textContent = this.username;
-        
-        article.append(img, span);
-        return article;
+        userWindow.append(pfp, username);
+        return userWindow;
     }
 
 

@@ -4,63 +4,35 @@
 */
 
 class User {
-    constructor(username, pfp) {
+    constructor(username, pfp, bio) {
         this.username = username;
         this.pfp = pfp;
+        this.bio = bio;
     }
 
-    displayItem() {
-        const li = document.createElement("li");
-        const article = document.createElement("article");
-        article.classList.add("user-card");
+    displayUser() {
+        const userItem = createElementWithClass("li", "user-item");
+        const userCard = createElementWithClass("article", "user-card");
+        const userContainer = createElementWithClass("div", "user-container");
+        const userHeader = createElementWithClass("div", "user-header");
+        const userDetails = createElementWithClass("div", "user-details");
+        const pfp = createElementWithClass("img", "user-card-pfp");
+        const username = createElementWithClass("h3", "user-card-username");
+        const bio = createElementWithClass("p", "user-card-bio");
+        const followBtn = createElementWithClass("button", "user-card-btn");
+        const defaultBio = "no bio yet.";
 
-        let div = document.createElement("div");
-        div.classList.add("user-container");
-
-        // displays the pfp
-        let pfp = document.createElement("img");
-        pfp.classList.add("user-card-pfp");
         pfp.src = this.pfp;
-
-        // displays the username
-        const username = document.createElement("h3");
-        username.classList.add("user-card-username");
         username.textContent = this.username;
+        bio.textContent = this.bio === defaultBio ? this.bio : `"${this.bio}"`;
+        followBtn.type = "button";
+        followBtn.textContent = "follow";
 
-
-        div.append(pfp, username);
-
-        // // displays the user id
-        // const userId = document.createElement("p");
-        // userId.classList.add("user-card-id");
-        // userId.textContent = this.userId;
-
-
-        // // view profile button 
-        // const viewProfile = document.createElement("button");
-        // viewProfile.classList.add("user-card-btn");
-        // viewProfile.type = "button";
-        // viewProfile.textContent = "view profile";
-
-        // follow button 
-        const button = document.createElement("button");
-        button.classList.add("user-card-btn");
-        button.type = "button";
-        button.textContent = "follow";
-        
-
-        article.append(div, button);
-        li.appendChild(article);
-        return li;
+        userHeader.append(pfp, username);
+        userDetails.append(userHeader, followBtn);
+        userContainer.append(userDetails);
+        userCard.append(userContainer, bio);
+        userItem.appendChild(userCard);
+        return userItem;
     }
-
-
-
-
-    displayUserCard() {
-
-    }
-
 }
-
-

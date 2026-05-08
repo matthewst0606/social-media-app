@@ -11,13 +11,6 @@ form {
     border-radius: 10px;
 }
 
-
-
-.form-section label {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
 .form-details {
     width: 50%;
     padding: 10px;
@@ -47,14 +40,18 @@ form {
     color: white;
 }
 
-#post-page {
+/* #post-page {
     gap: 30px;
-}
+} */
 
 #uploadFile {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
     padding: 12px;
     border-radius: 10px;
-    width: 300px;
+    box-sizing: border-box;
 
     color: white;
     background-color: rgba(255, 255, 255, 0.08);
@@ -69,15 +66,22 @@ form {
     margin-right: 10px;
 
     color: white;
-    background-color: #464646; 
+    background-color: #464646;
 
     font-weight: bold;
     cursor: pointer;
 }
 
+#description {
+    width: 300px;
+    max-width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
 
-#uploadFile {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(10px);
 }

@@ -4,7 +4,8 @@
 class ProfilePost extends Post {
     // --------------  constructs a post  -------------- 
     displayProfilePost() {
-        let postPreview = this.createProfileArticle();
+        let postPreview = createElementWithClass("article", "postPreview");
+
         let postImage = this.createProfileFigure();
         let dropdownButton = this.createDropdownButton();
         let dropdown = this.createDropdown(dropdownButton);
@@ -77,54 +78,40 @@ class ProfilePost extends Post {
         return input;      
     }
 
-    createProfileArticle() {
-        let article = document.createElement("article");
-        article.classList.add("postPreview");
-        return article;
-    }
 
     createProfileFigure() {
-        let figure = document.createElement("figure");
-        figure.classList.add("figContainer");
-
-        let img = this.displayPhoto();
+        let figure = createElementWithClass("figure", "figContainer");
+        let img = createImage(this.photo, "post-photo", "mainPhoto");
         figure.append(img);
-
         return figure;
     }
 
     createDropdownButton() {
-        let editBtn = document.createElement("button");
-        editBtn.textContent = "edit post";
-        editBtn.classList.add("edit-post-btn");
+        let editBtn = createElementWithClass("button", "edit-post-btn");
+        setText(editBtn, "edit");
         return editBtn;
     }
 
 
 
     createDropdown(dropdownButton) {
-        let dropdown = document.createElement("div");
-        dropdown.classList.add("edit-dropdown", "hidden");
-
+        let dropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         return dropdown;
     }
     
 
     createDeleteButton() {
-        // deletepost option 
-        let deletePost = document.createElement("button");
-
-        deletePost.textContent = "delete post";
-        deletePost.classList.add("delete-post-btn");
+        let deletePost = createElementWithClass("button", "delete-post-btn");
+        setText(deletePost, "delete post");
         return deletePost;
     }
 
     createDescriptionButton() {
-        let editDescription = document.createElement("button");
-        editDescription.textContent =  "edit description";
-        editDescription.classList.add("edit-description-btn");
+        let editDescription = createElementWithClass("button", "edit-description-btn");
+        setText(editDescription, "edit description");
         return editDescription;
     }
+
 
     createDescriptionOptions() {
         return {
@@ -140,10 +127,8 @@ class ProfilePost extends Post {
         };
     }
 
-
     createDescriptionForm(options) {
-        let form = document.createElement("form");
-        form.classList.add(options.formClass);
+        let form = createElementWithClass("form", options.formClass);
         form.method = "post";
         form.action = options.formAction;
 
@@ -151,23 +136,18 @@ class ProfilePost extends Post {
         let idInput = this.postIdInput();
 
         // input for description
-        let input = document.createElement("input");
+        let input = createElementWithClass("input", options.inputClass);
         input.type = options.inputType;
         input.name = options.inputName;
         input.placeholder = options.inputPlaceholder;
-        input.classList.add(options.inputClass);
 
         // submit button
-        let submitBtn = document.createElement("button");
+        let submitBtn = createElementWithClass("button", options.submitClass);
         submitBtn.type = options.submitType;
-        submitBtn.textContent = options.submitText;
-        submitBtn.classList.add(options.submitClass);
+        setText(submitBtn, options.submitText);
 
         form.append(idInput, input, submitBtn);
         return form;
     }
 
 }
-
-
-

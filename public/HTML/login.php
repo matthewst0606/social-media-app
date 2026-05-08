@@ -37,7 +37,7 @@ if (isset($_GET["error"])) {
                 </li>
                 <li class="nav-tab">
                     <a href="#" class="nav-btn">
-                        <p>help</p>
+                        <span>help</span>
                         <img src="../icons/help-circle-2.svg" alt="icon" class="icon">
                     </a>
                 </li>

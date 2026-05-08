@@ -3,19 +3,19 @@
     desc
 */
 class PostInteract {
-    constructor(ul) { 
-        ul.addEventListener("click", this); 
+    constructor(interactList) { 
+        interactList.addEventListener("click", this); 
     }
 
     handleEvent(e) {
-        let li = e.target.closest("li");
-        if (!li) return;
+        let iconItem = e.target.closest("li");
+        if (!iconItem) return;
 
-        if (li.classList.contains("like")) this.like(li);
-        else if (li.classList.contains("dislike")) this.dislike(li);
-        else if (li.classList.contains("comment")) this.comment(li);
-        else if (li.classList.contains("share")) this.share(li);
-        else if (li.classList.contains("user")) this.user(li);
+        if (iconItem.classList.contains("like")) this.like(iconItem);
+        else if (iconItem.classList.contains("dislike")) this.dislike(iconItem);
+        else if (iconItem.classList.contains("comment")) this.comment(iconItem);
+        else if (iconItem.classList.contains("share")) this.share(iconItem);
+        else if (iconItem.classList.contains("user")) this.user(iconItem);
     }
 
 
@@ -24,8 +24,8 @@ class PostInteract {
         let postId = post.dataset.postId;
         let wasSelected = li.classList.contains("selected");
         let formData = new FormData();
-        formData.append("post_id", postId);
         
+        formData.append("post_id", postId);
         formData.append("reaction", wasSelected ? "remove" : "like");
 
         fetch("../../app/posts/interact.php", {
@@ -40,7 +40,6 @@ class PostInteract {
 
         let like = li.classList.contains("selected")
         let likeCount = li.querySelector(".icon-interact-count");
-
 
         let dislike = post.querySelector(".dislike");
         let dislikeCount = dislike.querySelector(".icon-interact-count");
@@ -67,6 +66,7 @@ class PostInteract {
         let postId = post.dataset.postId;
         let wasSelected = li.classList.contains("selected");
         let formData = new FormData();
+        
         formData.append("post_id", postId);
         formData.append("reaction", wasSelected ? "remove" : "dislike");
 
@@ -79,6 +79,7 @@ class PostInteract {
 
         let dislike = li.classList.contains("selected")
         let dislikeCount = li.querySelector(".icon-interact-count");
+        
         let like = post.querySelector(".like");
         let likeCount = like.querySelector(".icon-interact-count");
 
@@ -99,7 +100,6 @@ class PostInteract {
 
     comment(li) {
         li.classList.toggle("selected");  
-
         let post = li.closest(".post");
         if (!post) return;
 
@@ -109,14 +109,12 @@ class PostInteract {
 
     share(li) {
         li.classList.toggle("selected");  
-
         let post = li.closest(".post");
         if (!post) return;
     }
 
     user(li) {
         li.classList.toggle("selected");  
-
         let post = li.closest(".post");
         if (!post) return;        
 

@@ -14,7 +14,6 @@
     width: 60%;
     margin: 20px;
     padding: 12px;
-
     border-radius: 16px;
     
     background-color: rgba(21, 21, 21, 0.88);
@@ -25,7 +24,6 @@
 
 
 /* ----- post image/content ----- */
-
 .figContainer {
     width: 85%;
     padding-top: 20px;
@@ -43,7 +41,6 @@
 
 .description {
     padding: 5px;
-
     font-size: 0.9rem;
     text-align: center;
 }
@@ -64,18 +61,20 @@
     margin: auto;
 }
 
-.post li {
+.react {
     width: 100%;
-
     border-radius: 10px;
-
     transition: transform 0.2s ease, background-color 0.2s ease;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
 }
 
-.post li:hover {
-    transform: translateY(-1px);
-
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+.react:hover {
+    transform: translateY(-2px);
     backdrop-filter: blur(6px);
 
     cursor: pointer;
@@ -87,13 +86,6 @@
     align-content: center;
 }
 
-.react {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-}
 
 /* ----- comments ----- */
 
@@ -176,7 +168,7 @@
     
 }
 
-
+/* comments section */
 
 .commentSection {
     display: flex;
@@ -188,8 +180,7 @@
     background-color: transparent;
 }
 
-.commentSection:hover,
-.commentSection.selected {
+.commentSection:hover {
     transform: none;
     background-color: transparent;
     cursor: default;

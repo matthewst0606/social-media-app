@@ -12,60 +12,36 @@ class Comment {
     }
 
     displayComment() {
-        let commentContainer = this.createArticle();
-        let topRow = this.createTopRow();
-        let pfp = this.displayPfp();
-        let username = this.displayUsername();
-        let comment = this.displayContent();
+        let commentContainer = createElementWithClass("article", "commentSection");
+        let topRow = createElementWithClass("section", "commentTopRow");
+        let pfp = createElementWithClass("img", "pfp");
+        let username = createElementWithClass("span", "username");
+        let comment = createElementWithClass("p", "content");
+
+        pfp.src = this.pfp;
+        setText(username, this.username);
+        setText(comment, this.content);
+
 
         topRow.append(pfp, username);
         commentContainer.append(topRow, comment);
-
         return commentContainer;
     }
-
-
-    // ----- helpers -----
-    createArticle() {
-        let article = document.createElement("article");
-        article.classList.add("commentSection");
-        return article;
-    }
-
-    createTopRow() {
-        let section = document.createElement("section");
-        section.classList.add("commentTopRow");
-        return section;
-    }
-
-    displayPfp() {
-        let img = document.createElement("img");
-        img.classList.add("pfp");
-        img.src = this.pfp;
-        return img;
-    }
-
-    displayUsername() {
-        let span = document.createElement("span");
-        span.classList.add("username");
-        span.textContent = this.username;
-        return span;
-    }
-
-    displayContent() {
-        let p = document.createElement("p");
-        p.classList.add("content");
-        p.textContent = this.content;
-        return p;
-    }
-
 }
+
+
 
 
 class CommentForm {
     constructor(postId) {
         this.postId = postId;
     }
+
+
+    displayCommentsContainer() {
+        return createElementWithClass("section", "comments-container");
+    }
+
 
     displayForm() {
         let commentForm = this.createCommentForm();
@@ -77,16 +53,11 @@ class CommentForm {
         return commentForm;
     }
 
-    // ----- helpers -----
-    displayCommentsContainer() {
-        let commentsContainer = document.createElement("section");
-        commentsContainer.classList.add("comments-container");
-        return commentsContainer;
-    }
 
+
+    // ----- helpers -----
     createCommentForm() {
-        let form = document.createElement("form");
-        form.classList.add("comment-form");
+        let form = createElementWithClass("form", "comment-form");
         form.action = "../../app/comments/comment.php";
         form.method = "post";
         return form;
@@ -101,8 +72,7 @@ class CommentForm {
     }
 
     createCommentInput() {
-        let commentInput = document.createElement("input");
-        commentInput.classList.add("searchbox");
+        let commentInput = createElementWithClass("input", "searchbox");
         commentInput.type = "text";
         commentInput.name = "comment_text";
         commentInput.placeholder = "add a comment";
@@ -110,12 +80,9 @@ class CommentForm {
     }
 
     createCommentSubmit() {
-        let submit = document.createElement("button");
-        submit.classList.add("submit-btn", "comment-submit");
+        let submit = createElementWithClass("button", "submit-btn", "comment-submit");
         submit.type = "submit";
-        submit.textContent = "Comment";
+        setText(submit, "Comment");
         return submit;
     }
-
-
 }

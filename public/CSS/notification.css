@@ -29,6 +29,16 @@
     text-align: center;
 }
 
+.notification-empty-icon {
+    display: block;
+
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 10px auto;
+
+    filter: invert(1);
+}
+
 .notification-empty h3 {
     font-size: 1rem;
 }
@@ -37,4 +47,3 @@
     color: rgba(255, 255, 255, 0.75);
     font-size: 0.9rem;
 }
-

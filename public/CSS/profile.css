@@ -169,33 +169,10 @@
     padding: 6px;
 
     border-radius: 10px;
-    background-color: rgba(32, 32, 32, 0.92);
+    background-color: rgba(32, 32, 32, 0.5);
 
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(6px);
-}
-
-.edit-dropdown button {
-    width: 100%;
-    padding: 7px 12px;
-
-    border: none;
-    border-radius: 7px;
-    background: transparent;
-
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-align: left;
-}
-
-.edit-dropdown button:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    cursor: pointer;
-}
-
-.edit-dropdown.hidden {
-    display: none;
 }
 
 

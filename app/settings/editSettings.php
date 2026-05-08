@@ -21,6 +21,10 @@ if (isset($_POST['deleteAccount'])) {
 if (isset($_POST['bio'])) {
     $bio = trim($_POST['bio']);
 
+    if ($bio === "") {
+        redirect("../../public/HTML/settings.php?error=bio");
+    }
+
     $stmt = $pdo->prepare("
         UPDATE userProfile
         SET bio = ?

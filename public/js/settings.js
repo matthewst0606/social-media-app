@@ -13,28 +13,28 @@ class Settings {
             }
 
             // ------ form ------
-            let form = document.createElement("form");
-            form.classList.add("btn-edit-form");
+            let form = createElementWithClass("form", "btn-edit-form");
             form.method = "post";
             form.action = "../../app/settings/editSettings.php";
 
             // ----- input ------
-            let input = document.createElement("input");
+            let input = createElementWithClass("input", options.inputClass);
             input.type = options.type;
             input.name = options.name;
-            input.classList.add(options.inputClass);
 
             // if placeholder exists (for editing bio form)
             if (options.placeholder) input.placeholder = options.placeholder;
+
+            // if required exists (for preventing blank bio form)
+            if (options.required) input.required = true;
 
             // if enctype exists (for editing pfp form)
             if (options.enctype) form.enctype = options.enctype;
             
             // form submit button
-            let submitBtn = document.createElement("button");
+            let submitBtn = createElementWithClass("button", "save-btn");
             submitBtn.type = "submit";
-            submitBtn.textContent = options.submitText;
-            submitBtn.classList.add("save-btn");
+            setText(submitBtn, options.submitText);
 
 
             form.append(input, submitBtn);
@@ -49,7 +49,7 @@ class Settings {
 
         // -----change profile photo----- 
         let editPfp = settingsBtn[0];
-        let pfpDropdown = document.createElement("div");
+        let pfpDropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         let pfpOptions = {
             type: "file",
             name: "profilePhoto",
@@ -58,27 +58,26 @@ class Settings {
             enctype: "multipart/form-data"
         };
 
-        pfpDropdown.classList.add("edit-dropdown", "hidden");
         editPfp.parentElement.appendChild(pfpDropdown);
 
         // ----- change bio-----
         let editBio = settingsBtn[1];
-        let bioDropdown = document.createElement("div");
+        let bioDropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         let bioOptions = {
             type: "text",
             name: "bio",
             placeholder: "new bio",
             inputClass: "bio-edit-input",
-            submitText: "save"
+            submitText: "save",
+            required: true
         };
 
-        bioDropdown.classList.add("edit-dropdown", "hidden");
         editBio.parentElement.appendChild(bioDropdown);
 
 
         // -----delete account-----
         let deleteAccount = settingsBtn[2];
-        let deleteDropdown = document.createElement("div");
+        let deleteDropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         let deleteOptions = {
             type: "hidden",
             name: "deleteAccount",
@@ -86,7 +85,6 @@ class Settings {
             submitText: "Delete Account?"
         };
         
-        deleteDropdown.classList.add("edit-dropdown", "hidden");
         deleteAccount.parentElement.appendChild(deleteDropdown);
 
         // ----- call event listener -----
