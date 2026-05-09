@@ -13,11 +13,12 @@ function displayTopNav() {
 }
 
 // ------------------ display main posts --------------------
-function displayMainPosts() {
+function displayMainPosts(posts = dbPosts) {
     const mainContent = document.getElementById("main-content");
+    mainContent.replaceChildren();
 
-    for (let i = 0; i < dbPosts.length; i++) {
-        const postData = dbPosts[i];
+    for (let i = 0; i < posts.length; i++) {
+        const postData = posts[i];
         const reactions = displayReactions(postData.post_id);
 
         const post = new Post(
@@ -26,7 +27,10 @@ function displayMainPosts() {
             postData.post_id,
             reactions.likeCount,
             reactions.dislikeCount,
-            reactions.userReaction
+            reactions.userReaction,
+            postData.tags,
+            postData.username,
+            postData.pfp ? "../" + postData.pfp : "../icons/profile-circle-2.svg"
         );
     
         const postContainer = post.displayPost();
@@ -36,6 +40,68 @@ function displayMainPosts() {
     }    
 }
 
+
+
+
+// ------------------ search by tag --------------------
+function cleanTag(tag) {
+    return tag.trim().replace(/^#/, "").toLowerCase();
+}
+
+function getTagList(tags) {
+    if (!tags) return [];
+
+    return tags
+        .split(/\s+/)
+        .map(tag => tag.trim())
+        .filter(tag => tag !== "");
+}
+
+function filterPostsByTag(searchText) {
+    const query = cleanTag(searchText);
+
+    if (query === "") {
+        displayMainPosts();
+        return;
+    }
+
+    const matchingPosts = dbPosts.filter(post => {
+        const tags = getTagList(post.tags);
+
+        return tags.some(tag => cleanTag(tag).includes(query));
+    });
+
+    displayMainPosts(matchingPosts);
+}
+
+function setupTagSearch() {
+    const searchForm = document.getElementById("search-form");
+    const searchInput = document.getElementById("search-input");
+
+    if (!searchForm || !searchInput) return;
+
+    searchForm.addEventListener("submit", event => {
+        event.preventDefault();
+        filterPostsByTag(searchInput.value);
+    });
+
+    document.getElementById("main-content").addEventListener("click", event => {
+        if (!event.target.classList.contains("tags")) return;
+
+        event.preventDefault();
+        searchInput.value = event.target.textContent;
+        filterPostsByTag(searchInput.value);
+    });
+
+    const urlQuery = new URLSearchParams(window.location.search).get("query");
+    if (urlQuery) {
+        searchInput.value = urlQuery;
+        filterPostsByTag(urlQuery);
+    }
+}
+
+
+// ------------------ display comments --------------------
 
 function displayComments(article, postId) {
     const commentsContainer = article.querySelector(".comments-container");
@@ -130,6 +196,7 @@ function displayNotifications() {
 // ----- calling functions -----
 displayTopNav();
 displayMainPosts();
+setupTagSearch();
 
 displayProfilePosts();
 displayProfileStats();

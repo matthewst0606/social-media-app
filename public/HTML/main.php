@@ -5,11 +5,22 @@
     if (!isset($_SESSION['id'])) redirect("login.php");
     require_once __DIR__ . "/../../app/core/mainhelper.php";
 
+    $username = $_SESSION['username'];
+
     $defaultPfp =  'icons/profile-circle-2.svg';
     $userPfp = '../' . ($userProfile['pfp'] ?? $defaultPfp);
 
     $defaultBio = "no bio yet.";
     $userBio = $userProfile['bio'] ?? $defaultBio;
+
+
+
+
+    function renderProfileInfo($username, $userPfp, $userBio) {
+        echo '<img id="pfp" src="' . htmlspecialchars($userPfp) . '" alt="pfp">';
+        echo '<p id="username"><strong>' . htmlspecialchars($username) . '</strong></p>';
+        echo '<p id="bio">' . htmlspecialchars($userBio) . '</p>';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -31,29 +42,39 @@
     <script src="../js/data.js"></script>
 </head>
 
+
+
 <body>
     <!------------------ top navigation --------------------->
     <header class="top-header">
 
-        <h1><a href="login.php">Social Media</a></h1> 
+        <h1><a href="login.php">Post Cards</a></h1> 
 
         <!-- top navigation that holds tabs -->
         <nav id="top-nav"><ul class="tab-container"></ul></nav>
 
         <!-- top nagivation that holds the searchbar + button -->
-        <nav class="searchbar">
-            <input type="text" placeholder="search" class="searchbox">
-            <button class="searchbtn">
+        <form class="searchbar" id="search-form">
+            <input type="text" placeholder="search post by tags" 
+                   class="searchbox" id="search-input"
+            >
+            <button class="searchbtn" type="submit">
                 <img src="../icons/search-3.svg" alt="search">
             </button>
-        </nav>
+        </form>
     </header>
 
+
+
+
     <main>
+
+    
         <!------------------ home section --------------------->
         <section id="home-page" class="active-page">
             <section id="main-content"></section>
         </section>
+
 
         <!------------------ friends section --------------------->
         <section id="friends-page" class="hidden">
@@ -74,6 +95,7 @@
             </section>
         </section>
         
+
         <!------------------ upload post section --------------------->
         <section id="post-page" class="hidden">
             <article class="content-card form-section">
@@ -88,13 +110,21 @@
                     <input 
                         class="searchbox" type="text" 
                         id="description" name="uploadDesc" 
-                        maxlength="255" placeholder="Add Description."
+                        maxlength="255" placeholder="add description"
                     >
+                    <input 
+                        class="searchbox" type="text" 
+                        id="tags" name="uploadTags" 
+                        maxlength="255" placeholder="add tags"
+                    >
+
                     <!-- submit the upload -->
                     <input type="submit" value="Upload" class="submit-btn">
+
                 </form>
             </article>
         </section>
+
 
         <!------------------ notifications section --------------------->
         <section id="notifications-page" class="hidden">
@@ -106,6 +136,7 @@
                 </article>
         </section>
 
+
         <!------------------ user profile section --------------------->
         <section id="profile-page" class="hidden">
             <section id="profile-banner">
@@ -115,11 +146,8 @@
                     <h2 class="title">profile</h2>
                     
                     <!-- pfp, username, & bio -->
-                    <img id="pfp" src="<?php echo htmlspecialchars($userPfp); ?>" alt="pfp">
-                    <p id="username">
-                        <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>
-                    </p>
-                    <p id="bio"><?php echo htmlspecialchars($userBio); ?></p>
+                     <?php renderProfileInfo($username, $userPfp, $userBio); ?>
+
                     
                     <!-- settings button -->
                     <a href="settings.php" class="edit-profile-btn">edit profile</a>
@@ -136,6 +164,8 @@
             <section id="profile-posts"></section>
         </section>
     </main>
+
+
 
     <!-- script to send details from DB to JS -->
     <?php include __DIR__ . "/include/appdata.php"; ?>

@@ -75,6 +75,12 @@
     background-color: #027AFF;
 
     color: white;
+    transition: transform 0.15s ease;
+}
+
+.edit-profile-btn:hover {
+    transform: scale(1.04);
+    cursor: pointer;
 }
 
 
@@ -142,11 +148,15 @@
 
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(4px);
+    transition: transform 0.15s ease;
+
 }
 
 .edit-post-btn:hover {
     background-color: rgba(90, 90, 90, 0.85);
     cursor: pointer;
+        transform: scale(1.04);
+
 }
 
 .edit-post-btn.active {
@@ -221,4 +231,6 @@
 .save-btn:hover {
     background-color: rgba(2, 122, 255, 0.85);
     cursor: pointer;
+
 }
+

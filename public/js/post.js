@@ -1,13 +1,17 @@
 // -------------- post class --------------
 class Post {
     constructor(photo, description, postId, 
-                likeCount, dislikeCount, userReaction) {
+                likeCount, dislikeCount, userReaction, tags, username, pfp) {
         this.photo = photo;
         this.description = description;
         this.postId = postId;
         this.likeCount = likeCount;
         this.dislikeCount = dislikeCount;
         this.userReaction = userReaction;
+        this.tags = tags;
+        this.username = username;
+        this.pfp = pfp;
+
 
     }
 
@@ -18,20 +22,19 @@ class Post {
 
         const mainPhoto = createImage(this.photo, "post-photo", "mainPhoto");
         const photoDescription = this.displayDescription();
-
+        const photoTags = this.displayTags();
         const reactList = this.displayInteractions();
         
         const commentSection = new CommentForm(this.postId);
         const commentsContainer = commentSection.displayCommentsContainer();
         const commentForm = commentSection.displayForm();
         const commentWindow = createElementWithClass("section", "comment-window", "hidden");
-
         const userWindow = this.displayUserWindow();
 
         postItem.dataset.postId = this.postId;
         commentWindow.append(commentsContainer, commentForm)
         postContainer.append(mainPhoto, photoDescription);
-        postItem.append(postContainer, reactList, commentWindow, userWindow);
+        postItem.append(postContainer, photoTags, reactList, commentWindow, userWindow);
         return postItem;
     }
 
@@ -43,6 +46,20 @@ class Post {
         let description = createElementWithClass("figcaption", "description");
         setText(description, this.description);
         return description;
+    }
+
+    displayTags() {
+        let tagList = createElementWithClass("section", "tag-list");
+        const tags = getTagList(this.tags);
+
+        for (let i = 0; i < tags.length; i++) {
+            let tag = createElementWithClass("a", "tags");
+            setText(tag, tags[i]);
+            tag.href = `?query=${encodeURIComponent(tags[i])}`;
+            tagList.appendChild(tag);
+        }
+
+        return tagList;
     }
 
     // -------------- display post interaction elements --------------
@@ -81,7 +98,6 @@ class Post {
         const pfp = createElementWithClass("img", "pfp");
         const username = createElementWithClass("span", "username");
 
-        userWindow.textContent = "test";
         pfp.src = this.pfp;
         username.textContent = this.username;
         

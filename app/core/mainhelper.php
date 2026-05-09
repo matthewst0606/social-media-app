@@ -1,24 +1,24 @@
 <?php
 
-
 // get connection to db
 require __DIR__ . "/db_connect.php";
 
 
 // --------------  statement --------------
-$stmt = $pdo->prepare(
+$postStmt = $pdo->prepare(
     "
-    SELECT post.*, users.username
+    SELECT post.*, users.username, userProfile.pfp
     FROM post
     JOIN users ON post.user_id = users.user_id 
+    JOIN userProfile ON post.user_id = userProfile.user_id
     ORDER BY post.created_at DESC, post.post_id DESC   
     "
 );
-$stmt->execute();
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);        
+$postStmt->execute();
+$posts = $postStmt->fetchAll(PDO::FETCH_ASSOC);        
 
 // -------------- profile statement --------------
-$profile = $pdo->prepare(
+$profileStmt = $pdo->prepare(
     "
     SELECT post.*, users.username
     FROM post
@@ -27,8 +27,8 @@ $profile = $pdo->prepare(
     ORDER BY post.created_at DESC, post.post_id DESC
     "
 );
-$profile->execute([$_SESSION['id']]);
-$profilePosts = $profile->fetchAll(PDO::FETCH_ASSOC);
+$profileStmt->execute([$_SESSION['id']]);
+$profilePosts = $profileStmt->fetchAll(PDO::FETCH_ASSOC);
 
 $userProfileStmt = $pdo->prepare("
     SELECT bio, pfp
@@ -69,16 +69,12 @@ $friends = $friendsStmt->fetchAll(PDO::FETCH_ASSOC);
 // -------------- comment statement --------------
 $commentsStmt = $pdo->prepare("
     SELECT 
-        comment.comment_id,
-        comment.content,
-        comment.created_at,
-        comment.post_id,
-        comment.user_id,
+        comment.*,
         users.username,
         userProfile.pfp
     FROM comment
     JOIN users ON comment.user_id = users.user_id
-    JOIN userProfile ON users.user_id = userProfile.user_id
+    JOIN userProfile ON comment.user_id = userProfile.user_id
     ORDER BY comment.created_at ASC, comment.comment_id ASC
 ");
 $commentsStmt->execute();

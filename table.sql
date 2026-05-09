@@ -20,6 +20,7 @@ create table post (
     format varchar(50),
     content varchar(255), 
     description varchar(255),
+    tags varchar(255),
     created_at date default current_date,
     is_public boolean,
     foreign key (user_id) references users(user_id) on delete cascade

@@ -39,10 +39,26 @@
     object-fit: cover;
 }
 
-.description {
+.description, .tag-list {
     padding: 5px;
     font-size: 0.9rem;
     text-align: center;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tags {
+    color: #53a3ff;
+}
+
+.tags:hover {
+    color: #027AFF;
+
 }
 
 

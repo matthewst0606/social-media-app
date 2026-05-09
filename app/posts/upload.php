@@ -33,16 +33,17 @@ $format = "image";
 
 // Gets the description from the form, or uses an empty string if none was entered
 $description = $_POST["uploadDesc"] ?? "";
+$tags = $_POST["uploadTags"] ?? "";
 
 
 // Prepares the SQL statement for adding a new post
 $stmt = $pdo->prepare("
-    INSERT INTO post (user_id, format, content, description) 
-    VALUES (?, ?, ?, ?)
+    INSERT INTO post (user_id, format, content, description, tags) 
+    VALUES (?, ?, ?, ?, ?)
 ");
 
 // Runs the SQL statement using the post values
-$stmt->execute([$userId, $format, $content, $description]);
+$stmt->execute([$userId, $format, $content, $description, $tags]);
 
 // Sends  user back to the main page
 header("Location: ../../public/HTML/main.php");

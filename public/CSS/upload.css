@@ -72,7 +72,7 @@ form {
     cursor: pointer;
 }
 
-#description {
+#description, #tags {
     width: 300px;
     max-width: 100%;
     padding: 10px 12px;
