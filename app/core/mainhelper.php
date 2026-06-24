@@ -1,4 +1,10 @@
 <?php
+/*  --- mainhelper.php ---
+    Loads the main data needed for the logged-in user's page.
+    This file gets posts, profile posts, user profile info,
+    other users, friends, comments, and post reactions from the database.
+    The results are stored in arrays so main.php can send them to JavaScript.
+*/
 
 // get connection to db
 require __DIR__ . "/db_connect.php";

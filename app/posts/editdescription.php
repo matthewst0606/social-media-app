@@ -1,6 +1,8 @@
-
-
 <?php
+/*  --- editdescription.php ---
+    allows a user to edit the description
+    of a post.
+*/
 session_start();
 require __DIR__ . "/../core/redirect.php";
 

@@ -1,5 +1,5 @@
 
-
+/* css file for the upload page */
 form {
     display: flex;
     flex-direction: column;
@@ -84,4 +84,17 @@ form {
     color: white;
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.32);
     backdrop-filter: blur(10px);
+}
+
+#post-page .error-message {
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    color: #ffffff;
+    background-color: rgba(190, 18, 60, 0.82);
+    text-align: center;
 }

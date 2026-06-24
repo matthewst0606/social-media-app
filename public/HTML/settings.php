@@ -1,58 +1,58 @@
 <?php
-    session_start();
-    require_once __DIR__ . "/../../app/core/redirect.php";
-    if (!isset($_SESSION['id'])) redirect("login.php");
+  session_start();
+  require_once __DIR__ . "/../../app/core/redirect.php";
+  if (!isset($_SESSION['id'])) redirect("login.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
 
-    <link rel="stylesheet" href="../CSS/reset.css">
-    <link rel="stylesheet" href="../CSS/main.css">
-    <script src="../js/domHelpers.js"></script>
+  <link rel="stylesheet" href="../CSS/reset.css">
+  <link rel="stylesheet" href="../CSS/main.css">
+  <script src="../js/domHelpers.js"></script>
 
 </head>
 <body>
-    <!------------------ top navigation --------------------->
-    <header class="top-header">
-        <h1>Social Media</h1>
-        <nav id="top-nav">
-            <ul class="tab-container back-tab-container">
-                <li class="nav-tab back-tab">
-                    <a href="main.php" class="nav-btn back-btn">back to profile</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <!------------------ top navigation --------------------->
+  <header class="top-header">
+      <h1>Post Cards</h1>
+      <nav id="top-nav">
+          <ul class="tab-container back-tab-container">
+              <li class="nav-tab back-tab">
+                  <a href="main.php" class="nav-btn back-btn">back to profile</a>
+              </li>
+          </ul>
+      </nav>
+  </header>
 
-    <main>
-        <section class="active-page" id="settings-page">
-            <article class="content-card settings-card">
-                <h2 class="title">Profile Settings</h2>
+  <main>
+    <section class="active-page" id="settings-page">
+        <article class="content-card settings-card">
+          <h2 class="title">Profile Settings</h2>
 
-                <ul class="settings-options">
-                    <li class="settings-tab">
-                        <button class="settings-btn" id="edit-pfp-button">Change Profile Photo</button>
-                    </li>
-                    <li class="settings-tab">
-                        <button class="settings-btn" id="edit-bio-button">Change Bio</button>
-                    </li>
-                    <li class="settings-tab">
-                        <button class="settings-btn" id="delete-account-button">Delete Account</button>
-                    </li>
-                </ul>
-            </article>
-        </section>
-    </main>
+          <ul class="settings-options">
+            <li class="settings-tab">
+              <button class="settings-btn" id="edit-pfp-button">Change Profile Photo</button>
+            </li>
+            <li class="settings-tab">
+              <button class="settings-btn" id="edit-bio-button">Change Bio</button>
+            </li>
+            <li class="settings-tab">
+              <button class="settings-btn" id="delete-account-button">Delete Account</button>
+            </li>
+          </ul>
+        </article>
+    </section>
+  </main>
 
-    <script src="../js/settings.js"></script>
-    <script>
-        const settings = new Settings();
-        settings.displaySettings();
-    </script>
+  <script src="../js/settings.js"></script>
+  <script>
+      const settings = new Settings();
+      settings.displaySettings();
+  </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- file used to authenticate a user -->
 <?php
 session_start();
 if (!isset($_POST['login'])) exit();
@@ -5,7 +6,6 @@ if (!isset($_POST['login'])) exit();
 
 require __DIR__ . "/../core/redirect.php";
 require __DIR__ . "/../core/db_connect.php";
-
 
 $username = $_POST['username'];
 $password = $_POST['password'];

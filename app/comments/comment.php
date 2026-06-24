@@ -1,4 +1,8 @@
 <?php
+/*  --- comment.php ---
+    Checks that the user is logged in, validates the comment form,
+    inserts the new comment into the database, then redirects back to main.
+*/
 session_start();
 require __DIR__ . "/../core/redirect.php";
 

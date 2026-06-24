@@ -1,4 +1,7 @@
 <?php
+/*  --- delete.php ---
+    allows for a user to delete a post
+*/
 session_start();
 require __DIR__ . "/../core/redirect.php";
 

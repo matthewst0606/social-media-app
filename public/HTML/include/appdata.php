@@ -1,4 +1,7 @@
 <script> 
+    // --- appdata.php ---
+    // this is a file used by main.php to send database
+    // info to JavaScript.
     const dbPosts = <?php echo json_encode($posts); ?>; 
     const userPosts = <?php echo json_encode($profilePosts); ?>;
     const dbFriends = <?php echo json_encode($friends); ?>;

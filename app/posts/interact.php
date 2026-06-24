@@ -1,4 +1,8 @@
 <?php
+/*  --- interact.php ---
+    allows a user to interact with a
+    post (like, dislike)
+*/
 session_start();
 require __DIR__ . "/../core/db_connect.php";
 

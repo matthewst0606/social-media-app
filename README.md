@@ -32,32 +32,72 @@ A social-media style web application built with PHP, JavaScript, CSS, PostgreSQL
   - find-friends and friends sections
   - notifications empty state
 
+## Screenshots
 
-## Database Setup
-This project requires PostgreSQL to be running through Docker.
+### Login
+<img src="screenshots/Login.png" alt="Login page" width="700">
 
-### - If the database is empty, run the provided SQL file to create the tables:
+### Home Feed
+<img src="screenshots/HomePage.png" alt="Home feed page" width="700">
+
+### Upload Post
+<img src="screenshots/UploadPage.png" alt="Upload post page" width="700">
+
+### Users
+<img src="screenshots/UsersPage.png" alt="Users page" width="700">
+
+### Notifications
+<img src="screenshots/NotificationPage.png" alt="Notifications page" width="700">
+
+### Profile
+<img src="screenshots/ProfilePage.png" alt="Profile page" width="700">
+
+### Edit Profile
+<img src="screenshots/EditProfilePage.png" alt="Edit profile page" width="700">
+
+
+## How to Run Locally
+This project uses Docker for PostgreSQL and PHP's built-in local server for the web app.
+
+### 1. Start PostgreSQL
+Run this from the project root:
 ```bash
-psql -h localhost -U postgres -d social_media -f table.sql
-```
-
-## How to run using a localhost
-(This was the main method used to develop and test the project.)
-
-### 1. Start the Postgres database from the provided dockerfile
-```bash 
 docker compose up -d
 ```
 
-### 2. Create a localhost on port 8000 using the `public` folder
-```bash 
-php -S localhost:8000 -t public
+### 2. Create the database, if needed
+The app connects to a PostgreSQL database named `social_media`.
+
+If this is your first time running the project, create that database:
+```bash
+docker compose exec db createdb -U postgres social_media
 ```
 
-### 3. Visit
-```bash 
-http://localhost:8000/HTML/main.php
+If you see an error saying the database already exists, you can ignore it.
+
+### 3. Create the tables, if needed
+Load the included schema into the `social_media` database:
+```bash
+docker compose exec -T db psql -U postgres -d social_media < table.sql
 ```
+
+If the tables already exist, you do not need to run this again.
+
+### 4. Start the PHP server
+Run this from the project root:
+```bash
+php -d upload_max_filesize=20M -d post_max_size=25M -S localhost:8000
+```
+
+Important: serve the project root, not only the `public` folder. The PHP forms submit to files inside the `app` folder.
+
+### 5. Open the app
+Visit the login page:
+```text
+http://localhost:8000/public/HTML/login.php
+```
+
+Create an account from the register page, then log in.
 
 
 ## Running with XAMPP
@@ -70,13 +110,13 @@ C:\xampp\htdocs\
 ### 2. Start Apache from the XAMPP Control Panel
 
 ### 3. Make sure Docker is running for PostgreSQL
-```bash 
+```bash
 docker compose up -d
 ```
 
 ### 4. Visit
-```bash 
-http://localhost/Web-Dev-Project/public/HTML/main.php
+```text
+http://localhost/social-media-app/public/HTML/login.php
 ```
 
 ## Credits

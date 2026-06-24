@@ -1,4 +1,7 @@
 <?php
+/*  --- upload.php ---
+    allows a user to upload a post
+*/
 session_start();
 
 require __DIR__ . "/../core/redirect.php";
@@ -8,16 +11,35 @@ require __DIR__ . "/../core/db_connect.php";
 if (!isset($_SESSION['id'])) 
     redirect("../../public/HTML/login.php");
 
-
 // Checks if PHP detected an upload error
-if ($_FILES["uploadFile"]["error"] !== UPLOAD_ERR_OK) 
+if (!isset($_FILES["uploadFile"]) || $_FILES["uploadFile"]["error"] !== UPLOAD_ERR_OK) {
+    $error = $_FILES["uploadFile"]["error"] ?? UPLOAD_ERR_NO_FILE;
+
+    if ($error === UPLOAD_ERR_INI_SIZE || $error === UPLOAD_ERR_FORM_SIZE) {
+        redirect("../../public/HTML/main.php?error=upload_size");
+    }
+
     redirect("../../public/HTML/main.php?error=upload");
+}
 
 
 
 $userId = $_SESSION['id'];
 $uploadDir = __DIR__ . "/../../public/uploads/"; 
-$fileName = basename($_FILES["uploadFile"]["name"]);
+$imageInfo = getimagesize($_FILES["uploadFile"]["tmp_name"]);
+
+if ($imageInfo === false) {
+    redirect("../../public/HTML/main.php?error=upload_type");
+}
+
+$extension = strtolower(pathinfo($_FILES["uploadFile"]["name"], PATHINFO_EXTENSION));
+$allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
+
+if (!in_array($extension, $allowedExtensions, true)) {
+    redirect("../../public/HTML/main.php?error=upload_type");
+}
+
+$fileName = uniqid("post_", true) . "." . $extension;
 $destination = $uploadDir . $fileName; 
 
 
@@ -46,6 +68,5 @@ $stmt = $pdo->prepare("
 $stmt->execute([$userId, $format, $content, $description, $tags]);
 
 // Sends  user back to the main page
-header("Location: ../../public/HTML/main.php");
-exit();
+redirect("../../public/HTML/main.php");
 ?>

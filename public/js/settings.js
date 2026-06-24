@@ -1,23 +1,30 @@
+/*
+    --- settings.js ---
+    Handles the settings page edit buttons.
+    Each button opens a dropdown form for updating the profile photo,
+    editing the bio, or deleting the account.
+*/
 class Settings {
-
+    // Adds the click behavior that opens a settings form.
     editListener(button, dropdown, options) {
         button.addEventListener("click", (event) => {
             dropdown.classList.toggle("hidden");
             button.classList.toggle("active");
 
-            // ------ removes the old active form ------
+            // If this dropdown already has a form open,
+            // remove it and close the action.
             let activeForm = dropdown.querySelector(".btn-edit-form");
             if (activeForm) {
                 activeForm.remove();
                 return;
             }
 
-            // ------ form ------
+            // Creates the form that sends the selected setting change to PHP.
             let form = createElementWithClass("form", "btn-edit-form");
             form.method = "post";
             form.action = "../../app/settings/editSettings.php";
 
-            // ----- input ------
+            // Builds the input using the options for this specific setting.
             let input = createElementWithClass("input", options.inputClass);
             input.type = options.type;
             input.name = options.name;
@@ -30,7 +37,7 @@ class Settings {
 
             // if enctype exists (for editing pfp form)
             if (options.enctype) form.enctype = options.enctype;
-            
+
             // form submit button
             let submitBtn = createElementWithClass("button", "save-btn");
             submitBtn.type = "submit";
@@ -42,12 +49,13 @@ class Settings {
         });
     }
 
+    // Creates the dropdowns for each settings button and connects their listeners.
     displaySettings() {
-        // get settings buttons from settings.php
+        // Gets the settings buttons that were loaded from settings.php.
         let settingsBtn = document.querySelectorAll(".settings-btn");
 
 
-        // -----change profile photo----- 
+        // change profile photo
         let editPfp = settingsBtn[0];
         let pfpDropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         let pfpOptions = {
@@ -57,10 +65,9 @@ class Settings {
             submitText: "save",
             enctype: "multipart/form-data"
         };
-
         editPfp.parentElement.appendChild(pfpDropdown);
 
-        // ----- change bio-----
+        // change bio
         let editBio = settingsBtn[1];
         let bioDropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         let bioOptions = {
@@ -71,11 +78,10 @@ class Settings {
             submitText: "save",
             required: true
         };
-
         editBio.parentElement.appendChild(bioDropdown);
 
 
-        // -----delete account-----
+        // delete account
         let deleteAccount = settingsBtn[2];
         let deleteDropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         let deleteOptions = {
@@ -84,8 +90,8 @@ class Settings {
             inputClass: "bio-edit-input",
             submitText: "Delete Account?"
         };
-        
         deleteAccount.parentElement.appendChild(deleteDropdown);
+
 
         // ----- call event listener -----
         this.editListener(editPfp, pfpDropdown, pfpOptions);

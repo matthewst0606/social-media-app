@@ -30,13 +30,10 @@ class Comment {
 }
 
 
-
-
 class CommentForm {
     constructor(postId) {
         this.postId = postId;
     }
-
 
     displayCommentsContainer() {
         return createElementWithClass("section", "comments-container");

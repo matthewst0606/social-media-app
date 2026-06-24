@@ -1,4 +1,8 @@
-
+/*
+    --- domHelpers.js ---
+    useful helper functions that are used
+    throughout the javascript files
+*/
 
 
 // ----- helpers -----

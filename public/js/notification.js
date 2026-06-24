@@ -1,4 +1,11 @@
+/*
+    --- notification.js ---
+    Builds notification cards for the notifications page.
+    It can display a list of notifications or show an empty
+    message when there is no activity yet.
+*/
 class Notification {
+    // Stores the notification information used to build one card
     constructor(username, action, icon, createdAt) {
         this.username = username;
         this.action = action;

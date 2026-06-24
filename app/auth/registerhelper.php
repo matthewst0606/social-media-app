@@ -1,4 +1,10 @@
 <?php
+/*  --- register.php ---
+    allows users to register an account.
+    ensures that username, email, and password
+    do not contain any spaces. email is also
+    validated to ensure it has a handle.
+*/
 session_start();
 // make sure form was submitted
 if (!isset($_POST['register'])) exit();
@@ -13,22 +19,19 @@ $password = $_POST['password'];
 
 // checks values to make sure they dont contain invalid characters
 if (str_contains($username, " ")) {
-    header("Location: ../../public/HTML/register.php?error=username");
-    exit();
+    redirect("../../public/HTML/register.php?error=username");
 }
 else if (str_contains($email, " ") || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: ../../public/HTML/register.php?error=email");
-    exit();
+    redirect("../../public/HTML/register.php?error=email");
 }
 else if (str_contains($password, " ")) {
-    header("Location: ../../public/HTML/register.php?error=password");
-    exit();
+    redirect("../../public/HTML/register.php?error=password");
 }
 
 // insert the new username, email, and hashed password into the database
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 $stmt = $pdo->prepare("
-    INSERT INTO users (username, email, password) 
+    INSERT INTO users (username, email, password)
     VALUES (?, ?, ?) RETURNING user_id
 ");
 $stmt->execute([$username, $email, $hashedPassword]);
@@ -44,12 +47,10 @@ $profileStmt->execute([
     "icons/profile-circle-2.svg"
 ]);
 
-// 
 $_SESSION['loggedin'] = true;
 $_SESSION['id'] = $user['user_id'];
 $_SESSION['username'] = $username;
 
 
-header("Location: ../../public/HTML/main.php");
-exit();
+redirect("../../public/HTML/main.php");
 ?>

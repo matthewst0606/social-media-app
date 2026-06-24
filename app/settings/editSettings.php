@@ -1,6 +1,9 @@
 <?php
+/*  --- editSettings.php ---
+    allows users to delete their account,
+    update their bio, or change their profile photo
+*/
 session_start();
-
 require __DIR__ . "/../core/redirect.php";
 require __DIR__ . "/../core/db_connect.php";
 
@@ -21,9 +24,8 @@ if (isset($_POST['deleteAccount'])) {
 if (isset($_POST['bio'])) {
     $bio = trim($_POST['bio']);
 
-    if ($bio === "") {
-        redirect("../../public/HTML/settings.php?error=bio");
-    }
+    if ($bio === "")
+        { redirect("../../public/HTML/settings.php?error=bio"); }
 
     $stmt = $pdo->prepare("
         UPDATE userProfile
@@ -37,7 +39,7 @@ if (isset($_POST['bio'])) {
 
 // if the pfp is saved without adding a file
 // set it to the default icon
-if (isset($_FILES['profilePhoto']) && 
+if (isset($_FILES['profilePhoto']) &&
     $_FILES['profilePhoto']['error'] === UPLOAD_ERR_NO_FILE) {
     $stmt = $pdo->prepare("
         UPDATE userProfile
@@ -50,15 +52,15 @@ if (isset($_FILES['profilePhoto']) &&
 }
 
 // update pfp
-if (isset($_FILES['profilePhoto']) && 
+if (isset($_FILES['profilePhoto']) &&
     $_FILES['profilePhoto']['error'] === UPLOAD_ERR_OK) {
     $uploadDir = __DIR__ . "/../../public/uploads/";
     $fileName = uniqid("pfp_", true) . "_" . basename($_FILES['profilePhoto']['name']);
     $destination = $uploadDir . $fileName;
 
-    if (!move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $destination)) 
+    if (!move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $destination))
         redirect("../../public/HTML/settings.php?error=profile-photo");
-    
+
     $pfp = "uploads/" . $fileName;
 
     $stmt = $pdo->prepare("

@@ -1,8 +1,12 @@
-
-
-
+/*
+    --- profile.js ---
+    Builds the post previews shown on the profile page.
+    This file also handles the edit dropdown, deleting posts,
+    and creating the form used to update a post description.
+*/
 class ProfilePost extends Post {
-    // --------------  constructs a post  -------------- 
+    // --------------  constructs a post --------------
+    // Creates the profile post preview and adds the edit/delete controls.
     displayProfilePost() {
         let postPreview = createElementWithClass("article", "postPreview");
 
@@ -17,15 +21,16 @@ class ProfilePost extends Post {
         let editDescriptionBtn = this.createDescriptionButton();
         let descriptionOptions = this.createDescriptionOptions();
         let deletePostBtn = this.createDeleteButton();
-    
+
         this.deletePostListener(deletePostBtn);
         this.editDescriptionListener(editDescriptionBtn, dropdown, deletePostBtn, descriptionOptions);
 
         dropdown.append(editDescriptionBtn, deletePostBtn);
         return postPreview;
-    }    
+    }
 
-    // ------------------------  listeners  ------------------------ 
+    // ------------------------  listeners  ------------------------
+    // Opens and closes the edit dropdown for this post.
     editBtnListener(editBtn, dropdown) {
         editBtn.addEventListener("click", function () {
             dropdown.classList.toggle("hidden");
@@ -33,6 +38,7 @@ class ProfilePost extends Post {
         });
     }
 
+    // Creates a hidden form and submits it to delete this post.
     deletePostListener(deletePost) {
         deletePost.addEventListener("click", () => {
             let form = document.createElement("form");
@@ -48,9 +54,10 @@ class ProfilePost extends Post {
         });
     }
 
+    // Shows or removes the description edit form inside the dropdown.
     editDescriptionListener(editDescription, dropdown, deletePost, options) {
         editDescription.addEventListener("click", () => {
-            // check for existing form 
+            // check for existing form
             let existingForm = dropdown.querySelector(".description-edit-form");
             if (existingForm) {
                 existingForm.remove();
@@ -69,16 +76,17 @@ class ProfilePost extends Post {
 
 
 
-    // ------------------------  helpers  ------------------------ 
-    postIdInput() {        
+    // ------------------------  helpers  ------------------------
+    // Creates a hidden input so PHP knows which post is being changed.
+    postIdInput() {
         let input = document.createElement("input");
         input.type = "hidden";
         input.name = "post_id";
-        input.value = this.postId;  
-        return input;      
+        input.value = this.postId;
+        return input;
     }
 
-
+    // creates the post preview image.
     createProfileFigure() {
         let figure = createElementWithClass("figure", "figContainer");
         let img = createImage(this.photo, "post-photo", "mainPhoto");
@@ -98,7 +106,7 @@ class ProfilePost extends Post {
         let dropdown = createElementWithClass("div", "edit-dropdown", "hidden");
         return dropdown;
     }
-    
+
 
     createDeleteButton() {
         let deletePost = createElementWithClass("button", "delete-post-btn");
@@ -132,7 +140,7 @@ class ProfilePost extends Post {
         form.method = "post";
         form.action = options.formAction;
 
-        // get the users id 
+        // Sends the post id with the form.
         let idInput = this.postIdInput();
 
         // input for description

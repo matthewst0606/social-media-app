@@ -1,5 +1,5 @@
-/* ----- post card ----- */
-
+/* css file for displaying/formating posts on home page and profile */
+/* ----------------- post card ------------------- */
 .figContainer,
 .post {
     display: flex;    
@@ -22,8 +22,7 @@
 }
 
 
-
-/* ----- post image/content ----- */
+/* ----- post image, description, and tags  ----- */
 .figContainer {
     width: 85%;
     padding-top: 20px;
@@ -103,8 +102,8 @@
 }
 
 
-/* ----- comments ----- */
-
+/* -------------- comments ---------------- */
+/* the window that appears when button is clicked */
 .comment-window {
     position: absolute;
     inset: auto 0% 14% auto;
@@ -118,15 +117,82 @@
 
     backdrop-filter: blur(6px);
 }
-
 .comment-window.hidden {
+    display: none;
+}
+
+/* -------------- share pop-up ---------------- */
+/* the window that appears when share button is clicked */
+.share-window {
+    position: absolute;
+    inset: auto 0% 14% auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 270px;
+    padding: 18px;
+    border-radius: 16px;
+
+    background-color: rgba(32, 32, 32, 0.75);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+
+    backdrop-filter: blur(6px);
+}
+
+.share-title {
+    font-size: 1rem;
+}
+
+.copy-link-btn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(2, 120, 255);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.copy-message {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.share-window.hidden,
+.copy-message.hidden {
+    display: none;
+}
+
+/* -------------- user pop-up ---------------- */
+/* the window that appears when user button is clicked */
+.post-user-window {
+    position: absolute;
+    inset: auto 0% 14% auto;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 270px;
+    padding: 18px;
+    border-radius: 16px;
+
+    background-color: rgba(32, 32, 32, 0.6);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+
+    backdrop-filter: blur(6px);
+}
+
+.post-user-window.hidden {
     display: none;
 }
 
 
 .comments-container {
     z-index: 10;
-
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -136,12 +202,8 @@
     padding: 16px;
 
     overflow-y: auto;
-
 }
- 
-
- 
-
+/* input form to add a comment */
 .comment-form {
     z-index: 10;
     display: flex;
@@ -151,20 +213,15 @@
     padding: 12px;
 
 } 
-
-
-
-
 .comment-form input {
     width: 100%;
     padding: 8px 10px;
     border: none;
     border-radius: 8px;
-    background-color: rgba(90, 90, 90, 0.85);
+    background-color: rgba(90, 90, 90, 0.5);
 
     color: white;
 }
-
 .comment-form button {
     padding: 7px 14px;
     border: none;
@@ -173,6 +230,8 @@
     color: white;
     font-weight: 600;
 }
+
+
 
 .comments-container,
 .comment-form {

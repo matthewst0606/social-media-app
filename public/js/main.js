@@ -1,3 +1,8 @@
+/*
+    --- main.js ---
+    This is the main javascript file that
+    combines all components together.
+*/
 
 // ------------------ display top navigation --------------------
 function displayTopNav() {
@@ -32,12 +37,12 @@ function displayMainPosts(posts = dbPosts) {
             postData.username,
             postData.pfp ? "../" + postData.pfp : "../icons/profile-circle-2.svg"
         );
-    
+
         const postContainer = post.displayPost();
 
         displayComments(postContainer, postData.post_id);
         mainContent.appendChild(postContainer);
-    }    
+    }
 }
 
 
@@ -98,6 +103,20 @@ function setupTagSearch() {
         searchInput.value = urlQuery;
         filterPostsByTag(urlQuery);
     }
+}
+
+function showUploadTabOnError() {
+    const error = new URLSearchParams(window.location.search).get("error");
+    const uploadErrors = ["upload", "upload_size", "upload_type"];
+
+    if (!uploadErrors.includes(error)) return;
+
+    const uploadTab = document.getElementById("post-tab");
+    const uploadPage = document.getElementById("post-page");
+
+    if (!uploadTab || !uploadPage) return;
+
+    new TabInteract(uploadTab).displayPage(uploadTab, uploadPage);
 }
 
 
@@ -195,6 +214,7 @@ function displayNotifications() {
 
 // ----- calling functions -----
 displayTopNav();
+showUploadTabOnError();
 displayMainPosts();
 setupTagSearch();
 
